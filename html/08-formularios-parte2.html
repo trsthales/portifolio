@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários HTML - Parte 2: Atributos e Validação</title>
+    <style>
+        /* Reset básico: remove margens e aplica box-sizing uniforme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 { 
+            color: #2c3e50; 
+            border-bottom: 4px solid #e74c3c; 
+            padding-bottom: 15px; 
+            margin-bottom: 25px;
+            font-size: 2.5em;
+        }
+        
+        h2 { 
+            color: #34495e; 
+            margin-top: 40px; 
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 5px solid #e74c3c;
+            padding-left: 15px;
+        }
+        
+        h3 { 
+            color: #7f8c8d; 
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .codigo {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .codigo pre {
+            color: #ecf0f1;
+        }
+        
+        .destaque {
+            background-color: #fff3cd;
+            padding: 20px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .exemplo {
+            background-color: #e8f5e9;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #27ae60;
+        }
+        
+        .alerta {
+            background-color: #ffebee;
+            padding: 20px;
+            border-left: 4px solid #e74c3c;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-left: 4px solid #2196f3;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .form-exemplo {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="number"],
+        .form-group input[type="tel"],
+        .form-group input[type="url"],
+        .form-group input[type="date"],
+        .form-group input[type="time"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .form-group input:required {
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .form-group input:valid {
+            border-left: 3px solid #27ae60;
+        }
+        
+        .form-group small {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        button[type="submit"],
+        .btn {
+            background: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button[type="submit"]:hover,
+        .btn:hover {
+            background: #c0392b;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            border: 1px solid #ecf0f1;
+            padding: 12px 15px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #ffe5e5;
+        }
+        
+        code {
+            background: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+            font-size: 0.9em;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .dica {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .dica::before {
+            content: "💡 ";
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 FORMULÁRIOS HTML - Parte 2: Atributos de Entrada e Validação</h1>
+
+        <!-- ============================================ -->
+        <!-- PARTE 4: ATRIBUTOS DE ENTRADA -->
+        <!-- ============================================ -->
+
+        <!-- Atributos: controlam comportamento, validação e aparência dos inputs -->
+        <h2>4. Atributos de Entrada (Input Attributes)</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Atributo</th>
+                    <th>Descrição</th>
+                    <th>Exemplo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>Nome do campo (enviado ao servidor)</td>
+                    <td><code>&lt;input name="email"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>Identificador único</td>
+                    <td><code>&lt;input id="email"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>Valor inicial/padrão</td>
+                    <td><code>&lt;input value="João"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>placeholder</code></td>
+                    <td>Texto de dica (desaparece ao digitar)</td>
+                    <td><code>&lt;input placeholder="Digite seu nome"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>required</code></td>
+                    <td>Campo obrigatório</td>
+                    <td><code>&lt;input required&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>readonly</code></td>
+                    <td>Apenas leitura (não editável)</td>
+                    <td><code>&lt;input readonly&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>disabled</code></td>
+                    <td>Desabilitado (não enviado)</td>
+                    <td><code>&lt;input disabled&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>maxlength</code></td>
+                    <td>Número máximo de caracteres</td>
+                    <td><code>&lt;input maxlength="10"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>minlength</code></td>
+                    <td>Número mínimo de caracteres</td>
+                    <td><code>&lt;input minlength="3"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>min</code></td>
+                    <td>Valor mínimo (number, date, etc.)</td>
+                    <td><code>&lt;input type="number" min="0"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>Valor máximo (number, date, etc.)</td>
+                    <td><code>&lt;input type="number" max="100"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>step</code></td>
+                    <td>Intervalo de incremento</td>
+                    <td><code>&lt;input type="number" step="0.5"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>pattern</code></td>
+                    <td>Expressão regular para validação</td>
+                    <td><code>&lt;input pattern="[0-9]{3}-[0-9]{4}"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>autocomplete</code></td>
+                    <td>Ativa/desativa autocompletar</td>
+                    <td><code>&lt;input autocomplete="off"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>autofocus</code></td>
+                    <td>Foca automaticamente ao carregar</td>
+                    <td><code>&lt;input autofocus&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>multiple</code></td>
+                    <td>Permite múltiplos valores</td>
+                    <td><code>&lt;input type="file" multiple&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>accept</code></td>
+                    <td>Tipos de arquivo aceitos</td>
+                    <td><code>&lt;input type="file" accept=".jpg,.png"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>size</code></td>
+                    <td>Largura visual do campo</td>
+                    <td><code>&lt;input size="30"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>checked</code></td>
+                    <td>Marcado por padrão (checkbox/radio)</td>
+                    <td><code>&lt;input type="checkbox" checked&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>formaction</code></td>
+                    <td>URL alternativa para este input</td>
+                    <td><code>&lt;input type="submit" formaction="/alt"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>formmethod</code></td>
+                    <td>Método alternativo para este input</td>
+                    <td><code>&lt;input type="submit" formmethod="GET"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>formnovalidate</code></td>
+                    <td>Desativa validação para este botão</td>
+                    <td><code>&lt;input type="submit" formnovalidate&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>form</code></td>
+                    <td>Associa input a um form específico</td>
+                    <td><code>&lt;input form="meuform"&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4.1. Exemplos Práticos de Atributos</h3>
+
+        <div class="exemplo">
+            <div class="form-exemplo">
+                <h4>Demonstração de Atributos:</h4>
+                
+                <div class="form-group">
+                    <label for="nome-req">Nome (required):</label>
+                    <input type="text" id="nome-req" name="nome" required placeholder="Campo obrigatório">
+                    <small>Este campo é obrigatório</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha-min">Senha (minlength=8, maxlength=20):</label>
+                    <input type="password" id="senha-min" minlength="8" maxlength="20" placeholder="8-20 caracteres">
+                    <small>Entre 8 e 20 caracteres</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="idade-min">Idade (min=18, max=100):</label>
+                    <input type="number" id="idade-min" min="18" max="100" placeholder="18-100">
+                    <small>Idade entre 18 e 100 anos</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="preco-step">Preço (step=0.50):</label>
+                    <input type="number" id="preco-step" step="0.50" placeholder="0.00" value="10.50">
+                    <small>Incremento de R$ 0,50</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="readonly-ex">Campo Readonly:</label>
+                    <input type="text" id="readonly-ex" value="Não pode editar" readonly>
+                    <small>Este campo não pode ser editado</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="disabled-ex">Campo Disabled:</label>
+                    <input type="text" id="disabled-ex" value="Desabilitado" disabled>
+                    <small>Este campo está desabilitado</small>
+                </div>
+            </div>
+        </div>
+
+        <h3>4.2. Pattern (Expressões Regulares)</h3>
+
+        <div class="destaque">
+            O atributo <code>pattern</code> permite validar o formato do input usando regex.
+        </div>
+
+        <div class="codigo">
+            <pre>&lt;!-- CEP: 12345-678 --&gt;
+&lt;input type="text" pattern="[0-9]{5}-[0-9]{3}" placeholder="12345-678"&gt;
+
+&lt;!-- Telefone: (11) 98765-4321 --&gt;
+&lt;input type="tel" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" placeholder="(11) 98765-4321"&gt;
+
+&lt;!-- CPF: 123.456.789-00 --&gt;
+&lt;input type="text" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" placeholder="123.456.789-00"&gt;
+
+&lt;!-- Apenas letras --&gt;
+&lt;input type="text" pattern="[A-Za-z]+" placeholder="Apenas letras"&gt;
+
+&lt;!-- Username: letras, números, underscore --&gt;
+&lt;input type="text" pattern="[A-Za-z0-9_]+" placeholder="username123"&gt;
+
+&lt;!-- Senha forte: min 8 chars, 1 maiúscula, 1 minúscula, 1 número --&gt;
+&lt;input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"&gt;</pre>
+        </div>
+
+        <div class="exemplo">
+            <div class="form-exemplo">
+                <h4>Exemplos de Pattern:</h4>
+                
+                <div class="form-group">
+                    <label for="cep">CEP (00000-000):</label>
+                    <input type="text" id="cep" pattern="[0-9]{5}-[0-9]{3}" placeholder="12345-678" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone ((00) 00000-0000):</label>
+                    <input type="tel" id="telefone" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" placeholder="(11) 98765-4321">
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf">CPF (000.000.000-00):</label>
+                    <input type="text" id="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" placeholder="123.456.789-00">
+                </div>
+            </div>
+        </div>
+
+        <h3>4.3. Autocomplete Values</h3>
+
+        <div class="info">
+            O atributo <code>autocomplete</code> pode ter valores específicos para ajudar navegadores:
+        </div>
+
+        <div class="codigo">
+            <pre>&lt;input type="text" autocomplete="name"&gt;
+&lt;input type="email" autocomplete="email"&gt;
+&lt;input type="tel" autocomplete="tel"&gt;
+&lt;input type="text" autocomplete="address-line1"&gt;
+&lt;input type="text" autocomplete="postal-code"&gt;
+&lt;input type="text" autocomplete="cc-number"&gt; &lt;!-- Cartão de crédito --&gt;
+&lt;input type="password" autocomplete="current-password"&gt;
+&lt;input type="password" autocomplete="new-password"&gt;</pre>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- PARTE 5: VALIDAÇÃO HTML5 -->
+        <!-- ============================================ -->
+
+        <h2>5. Validação HTML5</h2>
+
+        <div class="destaque">
+            <strong>HTML5 oferece validação built-in!</strong> Não precisa de JavaScript para validações básicas.
+        </div>
+
+        <h3>5.1. Pseudo-classes CSS para Validação</h3>
+
+        <div class="codigo">
+            <pre>/* Campo válido */
+input:valid {
+    border-color: green;
+}
+
+/* Campo inválido */
+input:invalid {
+    border-color: red;
+}
+
+/* Campo obrigatório */
+input:required {
+    border-left: 3px solid orange;
+}
+
+/* Campo opcional */
+input:optional {
+    border-left: 3px solid gray;
+}
+
+/* Campo em foco */
+input:focus {
+    border-color: blue;
+}
+
+/* Campo desabilitado */
+input:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+/* Checkbox/Radio marcado */
+input:checked {
+    /* estilos */
+}</pre>
+        </div>
+
+        <h3>5.2. Mensagens de Validação Personalizadas (JavaScript)</h3>
+
+        <div class="codigo">
+            <pre>&lt;input type="email" id="email-custom" required&gt;
+
+&lt;script&gt;
+const input = document.getElementById('email-custom');
+
+input.addEventListener('invalid', function(e) {
+    if (input.validity.valueMissing) {
+        input.setCustomValidity('Por favor, preencha o email!');
+    } else if (input.validity.typeMismatch) {
+        input.setCustomValidity('Por favor, insira um email válido!');
+    }
+});
+
+input.addEventListener('input', function() {
+    input.setCustomValidity(''); // Limpa a mensagem
+});
+&lt;/script&gt;</pre>
+        </div>
+
+        <h3>5.3. ValidityState (API JavaScript)</h3>
+
+        <div class="codigo">
+            <pre>// Propriedades do objeto validity:
+input.validity.valueMissing  // true se required e vazio
+input.validity.typeMismatch  // true se tipo incorreto (email, url)
+input.validity.patternMismatch // true se não corresponde ao pattern
+input.validity.tooLong       // true se excede maxlength
+input.validity.tooShort      // true se menor que minlength
+input.validity.rangeUnderflow // true se menor que min
+input.validity.rangeOverflow  // true se maior que max
+input.validity.stepMismatch   // true se não corresponde ao step
+input.validity.valid         // true se tudo válido
+
+// Verificar validade
+if (!input.validity.valid) {
+    console.log('Campo inválido!');
+}</pre>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- PARTE 6: EXEMPLOS COMPLETOS -->
+        <!-- ============================================ -->
+
+        <h2>6. Exemplos de Formulários Completos</h2>
+
+        <h3>6.1. Formulário de Cadastro</h3>
+
+        <div class="exemplo">
+            <form class="form-exemplo" action="#" method="POST">
+                <h4>📝 Cadastro de Usuário</h4>
+                
+                <div class="form-group">
+                    <label for="nome-cadastro">Nome Completo: *</label>
+                    <input 
+                        type="text" 
+                        id="nome-cadastro" 
+                        name="nome" 
+                        required 
+                        minlength="3"
+                        placeholder="João da Silva"
+                        autocomplete="name">
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="email-cadastro">Email: *</label>
+                        <input 
+                            type="email" 
+                            id="email-cadastro" 
+                            name="email" 
+                            required
+                            placeholder="joao@example.com"
+                            autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tel-cadastro">Telefone:</label>
+                        <input 
+                            type="tel" 
+                            id="tel-cadastro" 
+                            name="telefone"
+                            pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}"
+                            placeholder="(11) 98765-4321"
+                            autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="senha-cadastro">Senha: *</label>
+                        <input 
+                            type="password" 
+                            id="senha-cadastro" 
+                            name="senha" 
+                            required
+                            minlength="8"
+                            placeholder="Mínimo 8 caracteres"
+                            autocomplete="new-password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha-confirm">Confirmar Senha: *</label>
+                        <input 
+                            type="password" 
+                            id="senha-confirm" 
+                            name="senha_confirm" 
+                            required
+                            minlength="8"
+                            placeholder="Digite novamente"
+                            autocomplete="new-password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nascimento">Data de Nascimento: *</label>
+                    <input 
+                        type="date" 
+                        id="nascimento" 
+                        name="nascimento" 
+                        required
+                        max="2010-12-31"
+                        autocomplete="bday">
+                </div>
+
+                <div class="form-group">
+                    <label for="genero">Gênero:</label>
+                    <select id="genero" name="genero">
+                        <option value="">Selecione...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                        <option value="O">Outro</option>
+                        <option value="N">Prefiro não informar</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="termos" required>
+                        Aceito os termos de uso e política de privacidade *
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="newsletter">
+                        Desejo receber newsletters
+                    </label>
+                </div>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+
+        <h3>6.2. Formulário de Contato</h3>
+
+        <div class="exemplo">
+            <form class="form-exemplo" action="#" method="POST">
+                <h4>📧 Entre em Contato</h4>
+                
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="nome-contato">Nome: *</label>
+                        <input 
+                            type="text" 
+                            id="nome-contato" 
+                            name="nome" 
+                            required 
+                            placeholder="Seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email-contato">Email: *</label>
+                        <input 
+                            type="email" 
+                            id="email-contato" 
+                            name="email" 
+                            required
+                            placeholder="seu@email.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="assunto">Assunto: *</label>
+                    <select id="assunto" name="assunto" required>
+                        <option value="">Selecione um assunto...</option>
+                        <option value="duvida">Dúvida</option>
+                        <option value="sugestao">Sugestão</option>
+                        <option value="reclamacao">Reclamação</option>
+                        <option value="elogio">Elogio</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem: *</label>
+                    <textarea 
+                        id="mensagem" 
+                        name="mensagem" 
+                        rows="6" 
+                        required
+                        minlength="10"
+                        placeholder="Digite sua mensagem aqui..."></textarea>
+                    <small>Mínimo 10 caracteres</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="anexo">Anexar arquivo (opcional):</label>
+                    <input 
+                        type="file" 
+                        id="anexo" 
+                        name="anexo"
+                        accept=".pdf,.doc,.docx,.jpg,.png">
+                    <small>Formatos aceitos: PDF, DOC, DOCX, JPG, PNG</small>
+                </div>
+
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </div>
+
+        <h3>6.3. Formulário de Busca Avançada</h3>
+
+        <div class="exemplo">
+            <form class="form-exemplo" action="#" method="GET">
+                <h4>🔍 Busca Avançada de Produtos</h4>
+                
+                <div class="form-group">
+                    <label for="busca">Pesquisar:</label>
+                    <input 
+                        type="search" 
+                        id="busca" 
+                        name="q" 
+                        placeholder="Digite o que procura..."
+                        autofocus>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="categoria">Categoria:</label>
+                        <select id="categoria" name="categoria">
+                            <option value="">Todas as categorias</option>
+                            <optgroup label="Eletrônicos">
+                                <option value="celulares">Celulares</option>
+                                <option value="notebooks">Notebooks</option>
+                                <option value="tablets">Tablets</option>
+                            </optgroup>
+                            <optgroup label="Moda">
+                                <option value="roupas">Roupas</option>
+                                <option value="calcados">Calçados</option>
+                                <option value="acessorios">Acessórios</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ordenar">Ordenar por:</label>
+                        <select id="ordenar" name="sort">
+                            <option value="relevancia">Relevância</option>
+                            <option value="menor-preco">Menor preço</option>
+                            <option value="maior-preco">Maior preço</option>
+                            <option value="mais-vendidos">Mais vendidos</option>
+                            <option value="lancamentos">Lançamentos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Faixa de Preço:</label>
+                    <div class="grid-2">
+                        <input 
+                            type="number" 
+                            name="preco_min" 
+                            placeholder="R$ Mín" 
+                            min="0"
+                            step="0.01">
+                        <input 
+                            type="number" 
+                            name="preco_max" 
+                            placeholder="R$ Máx" 
+                            min="0"
+                            step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Avaliação mínima:</label>
+                    <input 
+                        type="range" 
+                        id="avaliacao" 
+                        name="rating" 
+                        min="0" 
+                        max="5" 
+                        step="1" 
+                        value="0">
+                    <output for="avaliacao">0</output> estrelas
+                </div>
+
+                <div class="form-group">
+                    <label>Filtros:</label>
+                    <label><input type="checkbox" name="frete_gratis"> Frete grátis</label><br>
+                    <label><input type="checkbox" name="promocao"> Em promoção</label><br>
+                    <label><input type="checkbox" name="estoque"> Disponível em estoque</label>
+                </div>
+
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <h2>📝 Resumo Final - Boas Práticas</h2>
+
+        <div class="destaque">
+            <h3>✅ Sempre faça:</h3>
+            <ol>
+                <li>Use <code>label</code> para TODOS os campos</li>
+                <li>Adicione atributo <code>name</code> (dados não serão enviados sem ele)</li>
+                <li>Use tipos de input apropriados (email, tel, number, etc.)</li>
+                <li>Adicione <code>placeholder</code> para orientar o usuário</li>
+                <li>Use <code>required</code> em campos obrigatórios</li>
+                <li>Implemente validação com <code>pattern</code>, <code>min</code>, <code>max</code></li>
+                <li>Forneça feedback visual (CSS :valid, :invalid)</li>
+                <li>Use <code>autocomplete</code> para melhorar UX</li>
+                <li>Agrupe campos relacionados com <code>&lt;fieldset&gt;</code></li>
+                <li>Teste em diferentes navegadores e dispositivos</li>
+            </ol>
+
+            <h3>❌ Evite:</h3>
+            <ul>
+                <li>Campos sem <code>label</code></li>
+                <li>Usar apenas <code>placeholder</code> sem label</li>
+                <li>Validação apenas no frontend (sempre valide no backend também)</li>
+                <li>Formulários muito longos (divida em etapas)</li>
+                <li>Botões de submit sem texto claro</li>
+                <li>Campos obrigatórios sem indicação visual</li>
+            </ul>
+        </div>
+
+        <div class="dica">
+            <strong>Dica Pro:</strong> Sempre combine validação HTML5 com validação no servidor! A validação frontend é para UX, mas não é segura sozinha.
+        </div>
+
+        <div class="info">
+            <h3>🔗 Recursos Adicionais:</h3>
+            <ul>
+                <li><strong>MDN Web Docs:</strong> Referência completa de formulários HTML</li>
+                <li><strong>Can I Use:</strong> Verifique compatibilidade de atributos HTML5</li>
+                <li><strong>Regex101:</strong> Teste expressões regulares para pattern</li>
+                <li><strong>HTML5 Pattern:</strong> Biblioteca de patterns prontos</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Script para atualizar o output do range
+        const avaliacaoInput = document.getElementById('avaliacao');
+        const avaliacaoOutput = document.querySelector('output[for="avaliacao"]');
+        
+        if (avaliacaoInput && avaliacaoOutput) {
+            avaliacaoInput.addEventListener('input', function() {
+                avaliacaoOutput.textContent = this.value;
+            });
+        }
+    </script>
+</body>
+</html>

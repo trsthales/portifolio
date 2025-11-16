@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Desenvolvedor - Projetos e Habilidades">
+    <title>Meu Portfólio | Desenvolvedor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+
+        <div class="container">
+            <div class="nav-brand" style="display: flex; align-items: center; gap: 0.5rem;">
+                <section>
+                    <a href="#home">
+                        <img src="img/selfie.jpg" alt="Foto de Thales" class="profile-photo"
+                            style="height:60px;width:60px;border-radius:50%;object-fit:cover;vertical-align:middle;">
+                    </a>
+                </section>
+
+
+
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#projects" class="nav-link">E esses projetos Na Sidebar?</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Layout with Sidebar -->
+
+    <!-- Left Sidebar for Projects -->
+    <div class="layout">
+
+        <aside class="sidebar" aria-label="Menu lateral de projetos">
+            <div class="sidebar-header">
+                <span>Projetos</span>
+                
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a class="side-link" href="./html/index.html">
+                            <i class="fab fa-js"></i>
+                            <span>HTML</span>
+                        </a>
+                        <button class="sidebar-close mobile-only" id="sidebarClose" aria-label="Fechar menu de projetos">
+                            <i class="fa fa-times fa-2x" style="color: white; height: 3x;width: 3x;"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a class="side-link" href="./javascript-basico/index.html">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript Básico</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="side-link" href="./javascript-avancado/index.html">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript Avançado</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="side-link" href="http://localhost:4001/">
+                            <i class="fab fa-js"></i>
+                            <span>Angular Modules</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="side-link" href="./ux/index.html">
+                            <i class="fab fa-js"></i>
+                            <span>UX</span>
+                        </a>
+                    </li>
+                    <!-- Para adicionar mais projetos: duplique um <li> acima e ajuste o href e o texto -->
+                </ul>
+            </nav>
+        </aside>
+
+
+
+        <main class="main-content" id="main">
+
+            <section id="sobre" class="section sobre">
+                <div class="container">
+                    
+                    <div class="sobre-content">
+                        <button class="sidebar-toggle mobile-only" id="sidebarToggle" aria-label="Abrir menu de projetos">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <div class="sobre-text">
+
+                            <p style="font-size: larger;">Olá, meu nome é Thales.<br>
+                                Sou programador com sólida experiência em desenvolvimento de software, especialmente nas
+                                tecnologias Java, Spring Boot e Angular. Visando sempre o futuro, por isso sempre
+                                estudando.</p>
+                            <blockquote
+                                style="font-size: larger; margin: 1.5em 0; font-style: italic; color: #8b5cf6; border-left: 4px solid #6366f1; padding-left: 1em;">
+                                “O futuro já chegou — só que não está distribuído de forma igualitária.”<br>— William
+                                Gibson</blockquote>
+                            <p style="font-size: larger;">Minha trajetória inclui trabalhos em empresas renomadas como
+                                UOL, Embraer e Petrobras, onde pude aprimorar meus conhecimentos, lidar com grandes
+                                desafios e contribuir para projetos estratégicos.</p>
+                            <p style="font-size: larger;">Além da tecnologia, sou apaixonado por xadrez, andar a cavalo
+                                e música — atividades que me inspiram criatividade e foco dentro e fora do trabalho.<br>
+                                Acredito no poder da prática constante e da busca pelo equilíbrio entre vida
+                                profissional e pessoal.</p>
+                            <p style="font-size: larger;">Estou sempre disposto a aprender, compartilhar conhecimento e
+                                colaborar em equipes para alcançar resultados relevantes e inovadores.</p>
+                            <p style="font-size: larger;">Obrigado pela atenção!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="projects" class="projects section">
+
+                <p style="font-size:larger;">Os projetos listados ao lado são exemplos práticos que utilizei para
+                    estudar e aprimorar meus conhecimentos em desenvolvimento web e frameworks modernos. Cada projeto
+                    representa uma etapa do meu aprendizado e experimentação com diferentes tecnologias.</span>
+
+            </section>
+        </main>
+    </div>
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Vamos trabalhar juntos!</h3>
+                    <p>Estou sempre aberto a discutir novos projetos, ideias criativas ou oportunidades
+                        para fazer parte da sua visão.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>thales87@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Telefone</h4>
+                                <p>+55 (27) 99781-1994</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Localização</h4>
+                                <p>Cariacica, Brasil</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/trsthales" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Seu Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <input type="text" id="subject" name="subject" placeholder="Assunto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Sua Mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <section id="contact" class="contact section">
+            <!--- Secure Site Seal - DO NOT EDIT --->
+            <span id="ss_img_wrapper_115-55_image_en">
+                <a href="http://www.alphassl.com/ssl-certificates/wildcard-ssl.html" target="_blank"
+                    title="SSL Certificates">
+                    <img alt="Wildcard SSL Certificates" id="ss_img"
+                        src="//seal.alphassl.com/SiteSeal/images/alpha_noscript_115-55_en.gif" title="SSL Certificate">
+                </a>
+            </span>
+            <script type="text/javascript" src="//seal.alphassl.com/SiteSeal/alpha_image_115-55_en.js"></script>
+            <!--- Secure Site Seal - DO NOT EDIT --->
+        </section>
+        <div class="container">
+            <p>&copy; 2025 Desenvolvido por Thales Ramalho de Souza. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

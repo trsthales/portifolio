@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Completo de HTML - Índice</title>
+    <style>
+        /* Reset básico: remove margens e aplica box-sizing uniforme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        /* Container principal: fundo branco com sombra e bordas arredondadas */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .intro {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .intro h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        .intro p {
+            line-height: 1.8;
+            color: #495057;
+            font-size: 1.1em;
+        }
+        
+        /* Grid de lições: layout responsivo que adapta colunas automaticamente */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        /* Card de lição: hover com elevação e animação suave */
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+        
+        .lesson-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .lesson-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .lesson-card h3 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .lesson-card p {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .lesson-card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .lesson-card ul li {
+            padding: 5px 0;
+            color: #495057;
+        }
+        
+        .lesson-card ul li::before {
+            content: '✓ ';
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .footer p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header p {
+                font-size: 1.1em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Guia Completo de HTML</h1>
+            <p>Aprenda HTML definitivamente do básico ao avançado</p>
+        </div>
+
+        <!-- Link do repositório GitHub -->
+        <div style="background: #f8f9fa; padding: 20px; text-align: center; border-bottom: 3px solid #667eea;">
+            <p style="margin: 0; font-size: 1.1em; color: #2c3e50;">
+                ⭐ <strong>Código aberto no GitHub:</strong> 
+                <a href="https://github.com/trsthales/html-edu-app" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   style="color: #667eea; text-decoration: none; font-weight: bold; border-bottom: 2px solid #667eea; padding-bottom: 2px; transition: all 0.3s;">
+                    trsthales/html-edu-app
+                </a>
+            </p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>🎯 Bem-vindo ao seu Guia Definitivo de HTML!</h2>
+                <p>
+                    Este guia foi criado para você aprender <strong>definitivamente</strong> os principais conceitos de HTML.
+                    Cada lição contém teoria completa, exemplos práticos funcionais e boas práticas.
+                    Clique em cada tópico abaixo para começar seu aprendizado!
+                </p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Lições Completas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Exemplos Práticos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">✓</div>
+                    <div class="stat-label">100% Interativo</div>
+                </div>
+            </div>
+
+            <h2 style="color: #2c3e50; font-size: 2em; margin: 40px 0 30px; text-align: center;">
+                📖 Conteúdo do Curso
+            </h2>
+
+            <div class="lessons-grid">
+                <!-- Lição 1 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">📊</div>
+                    <div class="lesson-number">1</div>
+                    <h3>Tabelas HTML</h3>
+                    <p>Domine a criação de tabelas profissionais e responsivas.</p>
+                    <ul>
+                        <li>Estrutura básica (table, tr, th, td)</li>
+                        <li>thead, tbody, tfoot</li>
+                        <li>colspan e rowspan</li>
+                        <li>Caption e acessibilidade</li>
+                        <li>Tabelas responsivas</li>
+                    </ul>
+                    <a href="01-tabelas.html" class="btn">Estudar Tabelas →</a>
+                </div>
+
+                <!-- Lição 2 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">📋</div>
+                    <div class="lesson-number">2</div>
+                    <h3>Listas HTML</h3>
+                    <p>Aprenda todos os tipos de listas e suas aplicações.</p>
+                    <ul>
+                        <li>Listas ordenadas (ol)</li>
+                        <li>Listas não ordenadas (ul)</li>
+                        <li>Listas de definição (dl)</li>
+                        <li>Atributos e estilos</li>
+                        <li>Listas aninhadas</li>
+                    </ul>
+                    <a href="02-listas.html" class="btn">Estudar Listas →</a>
+                </div>
+
+                <!-- Lição 3 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">📦</div>
+                    <div class="lesson-number">3</div>
+                    <h3>DIV, Classes e IDs</h3>
+                    <p>Entenda containers, identificadores e seletores CSS.</p>
+                    <ul>
+                        <li>O que é DIV</li>
+                        <li>Classes reutilizáveis</li>
+                        <li>IDs únicos</li>
+                        <li>Diferenças e quando usar</li>
+                        <li>Nomenclatura e boas práticas</li>
+                    </ul>
+                    <a href="03-div-classes-id.html" class="btn">Estudar DIV/Classes →</a>
+                </div>
+
+                <!-- Lição 4 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">🖼️</div>
+                    <div class="lesson-number">4</div>
+                    <h3>iFrames HTML</h3>
+                    <p>Incorpore conteúdo externo em suas páginas.</p>
+                    <ul>
+                        <li>Sintaxe e atributos</li>
+                        <li>YouTube, Google Maps</li>
+                        <li>Segurança (sandbox)</li>
+                        <li>iFrames responsivos</li>
+                        <li>Boas práticas</li>
+                    </ul>
+                    <a href="04-iframes.html" class="btn">Estudar iFrames →</a>
+                </div>
+
+                <!-- Lição 5 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">🏗️</div>
+                    <div class="lesson-number">5</div>
+                    <h3>Layout HTML</h3>
+                    <p>Crie estruturas de página profissionais e semânticas.</p>
+                    <ul>
+                        <li>Tags semânticas HTML5</li>
+                        <li>header, nav, main, aside, footer</li>
+                        <li>Layouts com Grid e Flexbox</li>
+                        <li>Holy Grail Layout</li>
+                        <li>Estruturas completas</li>
+                    </ul>
+                    <a href="05-layout.html" class="btn">Estudar Layout →</a>
+                </div>
+
+                <!-- Lição 6 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">📱</div>
+                    <div class="lesson-number">6</div>
+                    <h3>HTML Responsivo</h3>
+                    <p>Desenvolva sites que funcionam em todos os dispositivos.</p>
+                    <ul>
+                        <li>Meta tag viewport</li>
+                        <li>Media queries</li>
+                        <li>Mobile-first approach</li>
+                        <li>Grid e Flexbox responsivo</li>
+                        <li>Imagens responsivas</li>
+                        <li>Breakpoints</li>
+                    </ul>
+                    <a href="06-responsivo.html" class="btn">Estudar Responsividade →</a>
+                </div>
+
+                <!-- Lição 7 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">📝</div>
+                    <div class="lesson-number">7</div>
+                    <h3>Formulários - Parte 1</h3>
+                    <p>Fundamentos de formulários, elementos e tipos de input.</p>
+                    <ul>
+                        <li>Tag form e atributos</li>
+                        <li>GET vs POST</li>
+                        <li>Elementos (input, textarea, select)</li>
+                        <li>Todos os tipos de input</li>
+                        <li>Labels e fieldset</li>
+                    </ul>
+                    <a href="07-formularios-parte1.html" class="btn">Estudar Formulários 1 →</a>
+                </div>
+
+                <!-- Lição 8 -->
+                <div class="lesson-card">
+                    <div class="lesson-icon">✅</div>
+                    <div class="lesson-number">8</div>
+                    <h3>Formulários - Parte 2</h3>
+                    <p>Atributos de entrada, validação e exemplos completos.</p>
+                    <ul>
+                        <li>Todos os atributos de input</li>
+                        <li>Validação HTML5</li>
+                        <li>Pattern e regex</li>
+                        <li>Pseudo-classes CSS</li>
+                        <li>Formulários completos prontos</li>
+                    </ul>
+                    <a href="08-formularios-parte2.html" class="btn">Estudar Formulários 2 →</a>
+                </div>
+            </div>
+
+            <div class="intro" style="margin-top: 50px;">
+                <h2>💡 Como Usar Este Guia</h2>
+                <p>
+                    <strong>1.</strong> Comece pela ordem (do 1 ao 8) ou escolha o tópico que precisa aprender<br>
+                    <strong>2.</strong> Leia atentamente a teoria e exemplos<br>
+                    <strong>3.</strong> Teste os exemplos interativos abrindo cada arquivo no navegador<br>
+                    <strong>4.</strong> Pratique criando seus próprios exemplos<br>
+                    <strong>5.</strong> Use como referência sempre que precisar relembrar algo
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🚀 Pronto para Começar?</h3>
+            <p>
+                Escolha uma lição acima e comece sua jornada para dominar HTML!<br>
+                Todos os arquivos são 100% funcionais e podem ser abertos diretamente no navegador.<br><br>
+                <strong>Dica:</strong> Mantenha esta página como índice e navegue entre as lições conforme necessário.
+            </p>
+            <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.8;">
+                © 2025 - Guia Completo de HTML | Criado para aprendizado definitivo
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de UX - UX Shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .exercises-page {
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .exercise-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .exercise-number {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: var(--font-size-sm);
+        }
+
+        .exercise-difficulty {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+        }
+
+        .difficulty-easy {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .difficulty-medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .difficulty-hard {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+        }
+
+        .exercise-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin: var(--spacing-md) 0;
+        }
+
+        .exercise-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .exercise-example {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--primary-color);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .exercise-example-bad {
+            border-left-color: var(--error-color);
+        }
+
+        .exercise-example-good {
+            border-left-color: var(--success-color);
+        }
+
+        .example-label {
+            font-weight: 700;
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .example-label.bad {
+            color: var(--error-color);
+        }
+
+        .example-label.good {
+            color: var(--success-color);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-color);
+            background: var(--bg-secondary);
+        }
+
+        .quiz-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--error-color);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .exercise-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .feedback {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .feedback.incorrect {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error-color);
+            color: var(--error-color);
+        }
+
+        .feedback strong {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .score-board {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .score-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .score-value {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+        }
+
+        .challenge-box {
+            background: var(--warning-color);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .challenge-title {
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: var(--font-size-sm);
+            margin: var(--spacing-md) 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo" aria-label="Página inicial">
+                    <span class="logo-icon">🛍️</span>
+                    <span class="logo-text">UX Shop</span>
+                </a>
+
+                <nav class="main-nav" aria-label="Navegação principal">
+                    <a href="../index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                    <a href="../pages/produtos.html" class="nav-link">
+                        <span class="nav-icon">📦</span>
+                        <span>Produtos</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="exercises-page">
+        <div class="container">
+            <h1 class="section-title">Exercícios Práticos de UX</h1>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-2xl);">
+                Teste seus conhecimentos com exercícios práticos sobre boas e más práticas de UX
+            </p>
+
+            <!-- Placar -->
+            <div class="score-board">
+                <div class="score-title">Sua Pontuação</div>
+                <div class="score-value"><span id="score">0</span> / <span id="total">10</span></div>
+            </div>
+
+            <!-- EXERCÍCIO 1 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <span class="exercise-number">Exercício 1</span>
+                    <span class="exercise-difficulty difficulty-easy">Fácil</span>
+                </div>
+
+                <h2 class="exercise-title">Contraste de Cores</h2>
+                <p class="exercise-description">
+                    O contraste adequado é essencial para acessibilidade. Segundo as diretrizes WCAG 2.1, 
+                    o contraste mínimo para texto normal deve ser de 4.5:1.
+                </p>
+
+                <div class="exercise-example exercise-example-bad">
+                    <div class="example-label bad">❌ MÁ PRÁTICA:</div>
+                    <div style="color: #cccccc; background: #ffffff; padding: 1rem;">
+                        Este texto tem baixo contraste e é difícil de ler
+                    </div>
+                </div>
+
+                <div class="exercise-example exercise-example-good">
+                    <div class="example-label good">✅ BOA PRÁTICA:</div>
+                    <div style="color: #1f2937; background: #ffffff; padding: 1rem; border: 1px solid #e5e7eb;">
+                        Este texto tem contraste adequado e é fácil de ler
+                    </div>
+                </div>
+
+                <p><strong>Pergunta:</strong> Qual combinação de cores tem melhor contraste?</p>
+                
+                <div class="quiz-options" data-exercise="1" data-correct="c">
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="a">
+                        <span>Texto amarelo em fundo branco</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="b">
+                        <span>Texto cinza claro em fundo cinza médio</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="c">
+                        <span>Texto preto em fundo branco</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="d">
+                        <span>Texto laranja em fundo vermelho</span>
+                    </label>
+                </div>
+
+                <div class="exercise-actions">
+                    <button class="btn btn-primary" onclick="checkAnswer(1)">Verificar Resposta</button>
+                </div>
+
+                <div class="feedback" id="feedback-1"></div>
+            </div>
+
+            <!-- EXERCÍCIO 2 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <span class="exercise-number">Exercício 2</span>
+                    <span class="exercise-difficulty difficulty-easy">Fácil</span>
+                </div>
+
+                <h2 class="exercise-title">Tamanho de Área de Toque</h2>
+                <p class="exercise-description">
+                    Para dispositivos touch, a área mínima recomendada para elementos clicáveis é de 44x44px (Apple) 
+                    ou 48x48dp (Google Material Design).
+                </p>
+
+                <div class="exercise-example exercise-example-bad">
+                    <div class="example-label bad">❌ MÁ PRÁTICA:</div>
+                    <button style="padding: 2px 4px; font-size: 10px;">Botão Pequeno</button>
+                    <p style="font-size: 12px; margin-top: 8px;">Muito difícil de clicar em mobile!</p>
+                </div>
+
+                <div class="exercise-example exercise-example-good">
+                    <div class="example-label good">✅ BOA PRÁTICA:</div>
+                    <button class="btn btn-primary" style="min-height: 44px;">Botão Adequado</button>
+                    <p style="font-size: 12px; margin-top: 8px;">Fácil de clicar em qualquer dispositivo!</p>
+                </div>
+
+                <p><strong>Pergunta:</strong> Qual é o tamanho mínimo recomendado para botões em mobile?</p>
+                
+                <div class="quiz-options" data-exercise="2" data-correct="b">
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="a">
+                        <span>20x20px</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="b">
+                        <span>44x44px</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="c">
+                        <span>10x10px</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="d">
+                        <span>Não importa o tamanho</span>
+                    </label>
+                </div>
+
+                <div class="exercise-actions">
+                    <button class="btn btn-primary" onclick="checkAnswer(2)">Verificar Resposta</button>
+                </div>
+
+                <div class="feedback" id="feedback-2"></div>
+            </div>
+
+            <!-- EXERCÍCIO 3 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <span class="exercise-number">Exercício 3</span>
+                    <span class="exercise-difficulty difficulty-medium">Médio</span>
+                </div>
+
+                <h2 class="exercise-title">Labels em Formulários</h2>
+                <p class="exercise-description">
+                    Labels devem sempre estar visíveis, mesmo quando o usuário está digitando. 
+                    Usar apenas placeholder é uma má prática pois o texto desaparece.
+                </p>
+
+                <div class="exercise-example exercise-example-bad">
+                    <div class="example-label bad">❌ MÁ PRÁTICA: Apenas Placeholder</div>
+                    <input type="text" placeholder="Digite seu email" style="padding: 8px; border: 1px solid #ccc; width: 100%;">
+                    <p style="font-size: 12px; margin-top: 8px;">Quando você começa a digitar, perde o contexto!</p>
+                </div>
+
+                <div class="exercise-example exercise-example-good">
+                    <div class="example-label good">✅ BOA PRÁTICA: Label Visível</div>
+                    <label style="display: block; font-weight: 600; margin-bottom: 4px;">Email</label>
+                    <input type="text" placeholder="nome@exemplo.com" style="padding: 8px; border: 1px solid #ccc; width: 100%;">
+                    <p style="font-size: 12px; margin-top: 8px;">Label sempre visível + placeholder como exemplo!</p>
+                </div>
+
+                <p><strong>Pergunta:</strong> Por que usar apenas placeholder é uma má prática?</p>
+                
+                <div class="quiz-options" data-exercise="3" data-correct="a">
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="a">
+                        <span>O texto desaparece quando o usuário digita, perdendo o contexto</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="b">
+                        <span>Placeholders são visualmente mais bonitos</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="c">
+                        <span>Labels ocupam muito espaço na tela</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="d">
+                        <span>Não há problema em usar apenas placeholder</span>
+                    </label>
+                </div>
+
+                <div class="exercise-actions">
+                    <button class="btn btn-primary" onclick="checkAnswer(3)">Verificar Resposta</button>
+                </div>
+
+                <div class="feedback" id="feedback-3"></div>
+            </div>
+
+            <!-- EXERCÍCIO 4 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <span class="exercise-number">Exercício 4</span>
+                    <span class="exercise-difficulty difficulty-medium">Médio</span>
+                </div>
+
+                <h2 class="exercise-title">Feedback de Estado</h2>
+                <p class="exercise-description">
+                    Usuários precisam de feedback visual imediato quando interagem com elementos. 
+                    Estados hover, focus e active são essenciais.
+                </p>
+
+                <div class="challenge-box">
+                    <div class="challenge-title">🎯 Desafio Prático:</div>
+                    <p>Analise o código CSS abaixo:</p>
+                    <div class="code-block">
+button {<br>
+&nbsp;&nbsp;background: blue;<br>
+&nbsp;&nbsp;color: white;<br>
+&nbsp;&nbsp;padding: 10px;<br>
+&nbsp;&nbsp;/* Sem estados hover, focus ou active! */<br>
+}
+                    </div>
+                </div>
+
+                <p><strong>Pergunta:</strong> O que está faltando neste botão?</p>
+                
+                <div class="quiz-options" data-exercise="4" data-correct="c">
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="a">
+                        <span>Um ícone decorativo</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="b">
+                        <span>Uma animação complexa</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="c">
+                        <span>Estados de hover, focus e active para feedback visual</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="d">
+                        <span>Uma sombra (box-shadow) grande</span>
+                    </label>
+                </div>
+
+                <div class="exercise-actions">
+                    <button class="btn btn-primary" onclick="checkAnswer(4)">Verificar Resposta</button>
+                </div>
+
+                <div class="feedback" id="feedback-4"></div>
+            </div>
+
+            <!-- EXERCÍCIO 5 -->
+            <div class="exercise-card">
+                <div class="exercise-header">
+                    <span class="exercise-number">Exercício 5</span>
+                    <span class="exercise-difficulty difficulty-hard">Difícil</span>
+                </div>
+
+                <h2 class="exercise-title">Hierarquia Visual</h2>
+                <p class="exercise-description">
+                    A hierarquia visual guia o olhar do usuário. Elementos mais importantes devem ter 
+                    maior destaque através de tamanho, cor, peso e espaçamento.
+                </p>
+
+                <div class="exercise-example exercise-example-bad">
+                    <div class="example-label bad">❌ MÁ PRÁTICA: Sem Hierarquia</div>
+                    <div style="padding: 1rem; border: 1px solid #e5e7eb;">
+                        <p style="font-size: 14px; margin-bottom: 4px;">Produto XYZ</p>
+                        <p style="font-size: 14px; margin-bottom: 4px;">R$ 299,90</p>
+                        <p style="font-size: 14px; margin-bottom: 4px;">Descrição do produto aqui</p>
+                        <button style="font-size: 14px; padding: 4px 8px;">Comprar</button>
+                    </div>
+                    <p style="font-size: 12px; margin-top: 8px;">Tudo tem o mesmo peso visual!</p>
+                </div>
+
+                <div class="exercise-example exercise-example-good">
+                    <div class="example-label good">✅ BOA PRÁTICA: Hierarquia Clara</div>
+                    <div style="padding: 1rem; border: 1px solid #e5e7eb;">
+                        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Produto XYZ</h3>
+                        <p style="font-size: 24px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px;">R$ 299,90</p>
+                        <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">Descrição do produto aqui</p>
+                        <button class="btn btn-primary">Comprar Agora</button>
+                    </div>
+                    <p style="font-size: 12px; margin-top: 8px;">Título > Preço > Descrição > Ação!</p>
+                </div>
+
+                <p><strong>Pergunta:</strong> Quais técnicas ajudam a criar hierarquia visual?</p>
+                
+                <div class="quiz-options" data-exercise="5" data-correct="d">
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="a">
+                        <span>Apenas usar cores diferentes</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="b">
+                        <span>Deixar tudo do mesmo tamanho</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="c">
+                        <span>Usar apenas negrito</span>
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="d">
+                        <span>Combinar tamanho, peso, cor, espaçamento e posicionamento</span>
+                    </label>
+                </div>
+
+                <div class="exercise-actions">
+                    <button class="btn btn-primary" onclick="checkAnswer(5)">Verificar Resposta</button>
+                </div>
+
+                <div class="feedback" id="feedback-5"></div>
+            </div>
+
+            <!-- Adicione mais exercícios conforme necessário -->
+
+            <div style="text-align: center; margin-top: var(--spacing-3xl);">
+                <button class="btn btn-secondary" onclick="resetExercises()">
+                    🔄 Reiniciar Exercícios
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 UX Shop - Projeto Educacional</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Sistema de pontuação
+        let score = 0;
+        const totalQuestions = 5;
+        const answered = new Set();
+
+        // Respostas corretas e explicações
+        const answers = {
+            1: {
+                correct: 'c',
+                explanation: 'Texto preto em fundo branco tem excelente contraste (21:1), muito acima do mínimo exigido de 4.5:1. Amarelo em branco, cinzas e laranja em vermelho têm contraste insuficiente.'
+            },
+            2: {
+                correct: 'b',
+                explanation: '44x44px é o tamanho mínimo recomendado pela Apple. O Google recomenda 48x48dp. Tamanhos menores dificultam a interação em dispositivos touch.'
+            },
+            3: {
+                correct: 'a',
+                explanation: 'Quando o placeholder desaparece ao digitar, o usuário perde o contexto do campo. Labels sempre visíveis mantêm o contexto e melhoram a usabilidade.'
+            },
+            4: {
+                correct: 'c',
+                explanation: 'Estados hover, focus e active fornecem feedback visual essencial. O usuário precisa saber que o elemento é interativo e quando está sendo acionado.'
+            },
+            5: {
+                correct: 'd',
+                explanation: 'Hierarquia visual efetiva usa múltiplas técnicas combinadas: tamanho de fonte, peso (negrito), cor, espaçamento e posicionamento para guiar o olhar do usuário.'
+            }
+        };
+
+        function checkAnswer(exerciseNum) {
+            // Verificar se já respondeu
+            if (answered.has(exerciseNum)) {
+                appState.showNotification('Você já respondeu este exercício', 'info');
+                return;
+            }
+
+            const container = document.querySelector(`[data-exercise="${exerciseNum}"]`);
+            const selected = container.querySelector('input[type="radio"]:checked');
+            
+            if (!selected) {
+                appState.showNotification('Selecione uma resposta', 'warning');
+                return;
+            }
+
+            const userAnswer = selected.value;
+            const correctAnswer = answers[exerciseNum].correct;
+            const isCorrect = userAnswer === correctAnswer;
+            const feedback = document.getElementById(`feedback-${exerciseNum}`);
+
+            // Marcar como respondido
+            answered.add(exerciseNum);
+
+            // Destacar opções
+            const options = container.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                const input = option.querySelector('input');
+                if (input.value === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (input.value === userAnswer && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+                input.disabled = true;
+            });
+
+            // Mostrar feedback
+            if (isCorrect) {
+                score++;
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = `
+                    <strong>✓ Correto!</strong>
+                    ${answers[exerciseNum].explanation}
+                `;
+                appState.showNotification('Resposta correta! 🎉', 'success');
+            } else {
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `
+                    <strong>✕ Incorreto</strong>
+                    ${answers[exerciseNum].explanation}
+                `;
+                appState.showNotification('Resposta incorreta. Leia a explicação.', 'error');
+            }
+
+            // Atualizar pontuação
+            updateScore();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            
+            // Mensagem de conclusão
+            if (answered.size === totalQuestions) {
+                const percentage = (score / totalQuestions) * 100;
+                let message = '';
+                
+                if (percentage === 100) {
+                    message = 'Perfeito! Você domina UX! 🏆';
+                } else if (percentage >= 70) {
+                    message = 'Muito bem! Você está no caminho certo! 🎉';
+                } else if (percentage >= 50) {
+                    message = 'Bom trabalho! Continue estudando! 📚';
+                } else {
+                    message = 'Continue praticando! Você vai melhorar! 💪';
+                }
+                
+                setTimeout(() => {
+                    appState.showNotification(message, 'success');
+                }, 500);
+            }
+        }
+
+        function resetExercises() {
+            if (!confirm('Tem certeza que deseja reiniciar os exercícios?')) {
+                return;
+            }
+
+            score = 0;
+            answered.clear();
+            updateScore();
+
+            // Resetar todos os exercícios
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                const input = option.querySelector('input');
+                input.checked = false;
+                input.disabled = false;
+            });
+
+            document.querySelectorAll('.feedback').forEach(feedback => {
+                feedback.className = 'feedback';
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            appState.showNotification('Exercícios reiniciados!', 'info');
+        }
+
+        // Inicializar pontuação
+        document.getElementById('total').textContent = totalQuestions;
+    </script>
+</body>
+</html>

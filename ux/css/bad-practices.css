@@ -1,0 +1,357 @@
+/* 
+========================================
+❌ MÁS PRÁTICAS DE CSS E UX
+========================================
+Este arquivo contém exemplos do que NÃO fazer.
+Use este código para comparação e aprendizado.
+NUNCA use estas práticas em projetos reais!
+*/
+
+/* 
+❌ MÁ PRÁTICA: Cores hardcoded e inconsistentes
+Problema: Difícil manutenção, sem padrão visual
+*/
+.bad-button-1 {
+    background-color: #ff5733;
+}
+
+.bad-button-2 {
+    background-color: #ff6644; /* Quase igual mas diferente */
+}
+
+.bad-button-3 {
+    background-color: rgb(255, 87, 51); /* Mesma cor, sintaxe diferente */
+}
+
+/* 
+❌ MÁ PRÁTICA: Texto muito pequeno
+Problema: Difícil leitura, especialmente em dispositivos móveis
+WCAG recomenda mínimo de 16px para body text
+*/
+.bad-tiny-text {
+    font-size: 10px; /* Muito pequeno! */
+    line-height: 1.1; /* Line-height apertado demais */
+}
+
+/* 
+❌ MÁ PRÁTICA: Contraste insuficiente
+Problema: Inacessível para pessoas com baixa visão
+WCAG AA requer contraste mínimo de 4.5:1 para texto normal
+*/
+.bad-low-contrast {
+    color: #cccccc; /* Cinza claro */
+    background-color: #ffffff; /* Fundo branco - contraste muito baixo! */
+}
+
+.bad-contrast-2 {
+    color: #ffff00; /* Amarelo */
+    background-color: #ffffff; /* Fundo branco - quase invisível! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Botões sem área de toque adequada
+Problema: Difícil de clicar, especialmente em mobile
+Recomendação: mínimo 44x44px
+*/
+.bad-tiny-button {
+    padding: 2px 4px; /* Muito pequeno! */
+    font-size: 10px;
+    /* Provavelmente menos de 20x20px total */
+}
+
+/* 
+❌ MÁ PRÁTICA: Remover outline sem alternativa
+Problema: Usuários de teclado não sabem onde estão
+CRÍTICO para acessibilidade!
+*/
+.bad-no-focus *:focus {
+    outline: none; /* NUNCA faça isso sem alternativa! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Inputs sem border visível
+Problema: Usuário não sabe que é um campo editável
+*/
+.bad-invisible-input {
+    border: none;
+    background: transparent;
+    /* Parece texto normal, não um input! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Texto justificado em telas pequenas
+Problema: Espaçamento irregular, dificulta leitura
+*/
+.bad-justified-text {
+    text-align: justify; /* Cria espaços estranhos em mobile */
+}
+
+/* 
+❌ MÁ PRÁTICA: Animations excessivas e irritantes
+Problema: Distrai, causa náusea, afeta usuários com sensibilidade
+*/
+@keyframes bad-annoying-spin {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(360deg) scale(1.5); }
+}
+
+.bad-spinning-element {
+    animation: bad-annoying-spin 0.3s infinite; /* Muito rápido e infinito! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Fixed elements cobrindo conteúdo
+Problema: Esconde informações importantes
+*/
+.bad-overlapping-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 200px; /* Muito alto! */
+    z-index: 9999;
+    /* Cobre 1/3 da tela em mobile! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Links que não parecem links
+Problema: Usuário não sabe que pode clicar
+*/
+.bad-link {
+    color: black; /* Mesma cor do texto */
+    text-decoration: none; /* Sem underline */
+    cursor: default; /* Cursor errado! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Hover sem feedback visual
+Problema: Usuário não sabe se o elemento é interativo
+*/
+.bad-no-hover-feedback {
+    cursor: pointer;
+    /* Mas sem mudança visual no hover! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Modais sem forma de fechar
+Problema: Usuário fica preso
+*/
+.bad-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /* Sem botão de fechar, sem ESC para sair! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Formulários sem labels
+Problema: Inacessível, usuário não sabe o que preencher
+*/
+.bad-form input {
+    /* Sem label associado */
+    /* Apenas placeholder (que desaparece ao digitar) */
+}
+
+/* 
+❌ MÁ PRÁTICA: Mensagens de erro genéricas
+Problema: Usuário não sabe como corrigir
+*/
+.bad-error-message::after {
+    content: "Erro!"; /* Muito vago! */
+    /* Deveria dizer: "Email inválido. Use formato: nome@exemplo.com" */
+}
+
+/* 
+❌ MÁ PRÁTICA: Loading infinito sem feedback
+Problema: Usuário não sabe se travou ou está carregando
+*/
+.bad-loading {
+    /* Tela branca sem indicação de progresso */
+    /* Sem spinner, sem mensagem, nada! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Cores com significado, mas sem alternativa
+Problema: Daltônicos não distinguem
+*/
+.bad-color-only-indicator {
+    /* Verde = sucesso, Vermelho = erro */
+    /* MAS sem ícone ou texto de apoio! */
+    border: 3px solid green;
+}
+
+/* 
+❌ MÁ PRÁTICA: Texto em imagem sem alt text
+Problema: Inacessível para leitores de tela e SEO
+*/
+.bad-text-image {
+    /* <img src="importante.jpg"> sem alt */
+    /* Se a imagem não carregar, informação perdida! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Pop-ups imediatos
+Problema: Interrompe usuário antes dele ver o conteúdo
+*/
+.bad-immediate-popup {
+    /* Modal aparece ao carregar a página */
+    /* Usuário nem viu o que o site oferece! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Scroll hijacking
+Problema: Comportamento inesperado, frustrante
+*/
+.bad-scroll-hijack {
+    scroll-behavior: unset;
+    overflow: hidden;
+    /* JavaScript controla scroll de forma estranha */
+}
+
+/* 
+❌ MÁ PRÁTICA: Auto-play de vídeo/áudio
+Problema: Assusta usuário, gasta dados móveis
+*/
+.bad-autoplay video {
+    /* autoplay sem controles do usuário */
+}
+
+/* 
+❌ MÁ PRÁTICA: Captcha impossível
+Problema: Frustra usuários legítimos
+*/
+.bad-captcha {
+    /* "Clique em todos os semáforos" */
+    /* Mas imagens ambíguas e em 9 páginas */
+}
+
+/* 
+❌ MÁ PRÁTICA: Formulário que limpa ao erro
+Problema: Usuário tem que preencher tudo de novo
+*/
+.bad-form-reset {
+    /* Ao encontrar erro, limpa todos os campos */
+    /* Perde todo o trabalho do usuário! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Breadcrumbs que não funcionam
+Problema: Expectativa quebrada, navegação confusa
+*/
+.bad-breadcrumb {
+    /* Home > Categoria > Produto */
+    /* Mas os links não funcionam ou vão pro lugar errado */
+    pointer-events: none; /* Links desabilitados?! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Ícones sem significado claro
+Problema: Usuário não entende o que faz
+*/
+.bad-cryptic-icon {
+    /* Ícone abstrato sem label */
+    /* Usuário tem que adivinhar a função */
+}
+
+/* 
+❌ MÁ PRÁTICA: Mobile com elementos muito próximos
+Problema: Usuário clica no lugar errado
+*/
+.bad-mobile-spacing {
+    /* Botões com 2px de distância em mobile */
+}
+
+.bad-mobile-spacing button {
+    margin: 1px; /* Muito próximo! */
+    padding: 2px; /* Muito pequeno! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Text overflow sem solução
+Problema: Informação cortada
+*/
+.bad-text-overflow {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    /* Texto cortado sem "..." ou tooltip */
+}
+
+/* 
+❌ MÁ PRÁTICA: Z-index aleatórios
+Problema: Elementos se sobrepõem de forma imprevisível
+*/
+.bad-z-index-1 { z-index: 999; }
+.bad-z-index-2 { z-index: 9999; }
+.bad-z-index-3 { z-index: 99999; }
+.bad-z-index-4 { z-index: 999999; } /* Guerra de z-index! */
+
+/* 
+❌ MÁ PRÁTICA: !important em tudo
+Problema: Dificulta manutenção e override
+*/
+.bad-important {
+    color: red !important;
+    font-size: 12px !important;
+    margin: 0 !important;
+    /* !important deveria ser exceção, não regra */
+}
+
+/* 
+❌ MÁ PRÁTICA: IDs para estilização
+Problema: Alta especificidade, dificulta reutilização
+*/
+#bad-styling {
+    /* IDs devem ser para JavaScript, não CSS */
+    /* Use classes! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Seletores muito específicos
+Problema: Difícil de sobrescrever e manter
+*/
+body div.container ul li a.link span.text {
+    /* Especificidade absurda! */
+}
+
+/* 
+❌ MÁ PRÁTICA: Magic numbers sem contexto
+Problema: Ninguém sabe por que aquele valor
+*/
+.bad-magic-number {
+    margin-top: 47px; /* Por quê 47? */
+    padding-left: 23px; /* Por quê 23? */
+    /* Use variáveis e valores da escala de espaçamento! */
+}
+
+/* 
+========================================
+RESUMO: O QUE EVITAR
+========================================
+
+1. ❌ Baixo contraste de cores
+2. ❌ Texto muito pequeno
+3. ❌ Áreas de toque pequenas
+4. ❌ Remover outline sem alternativa
+5. ❌ Animações excessivas
+6. ❌ Elementos sem feedback visual
+7. ❌ Formulários sem labels
+8. ❌ Mensagens de erro vagas
+9. ❌ Cores como única indicação
+10. ❌ Pop-ups que interrompem
+11. ❌ Auto-play de mídia
+12. ❌ Mobile com elementos muito próximos
+13. ❌ !important desnecessários
+14. ❌ Z-index guerra
+15. ❌ Seletores muito específicos
+
+✅ SEMPRE TESTE:
+- Com leitores de tela
+- Com navegação por teclado
+- Em diferentes tamanhos de tela
+- Com diferentes contrastes
+- Com usuários reais!
+
+*/

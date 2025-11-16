@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparações Avançadas de UX - UX Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">UX Shop</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="comparacao.html">Comparações Básicas</a></li>
+                    <li><a href="comparacao-avancada.html" class="active">Comparações Avançadas</a></li>
+                    <li><a href="exercicios/exercicios.html">Exercícios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="comparisons-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>⚡ Comparações Avançadas de UX</h1>
+                <p class="page-description">
+                    Exemplos mais específicos e situações complexas do dia a dia
+                </p>
+            </div>
+
+            <!-- Exemplo 21: Senha com Requisitos -->
+            <div class="comparison-section">
+                <h2 class="section-title">21. Requisitos de Senha</h2>
+                <div class="section-description">
+                    Mostre requisitos progressivamente, não todos de uma vez
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Requisitos estáticos</div>
+                        <label>Senha</label>
+                        <input type="password" style="width: 100%; padding: 8px; margin-bottom: 8px;">
+                        <p style="color: red; font-size: 11px; line-height: 1.3;">
+                            Deve ter 8+ caracteres, 1 maiúscula, 1 minúscula, 1 número, 1 caractere especial
+                        </p>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Texto vermelho constante parece erro. 
+                            Difícil ler lista corrida. Não mostra progresso.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Requisitos dinâmicos</div>
+                        <label>Senha</label>
+                        <input type="password" value="Teste123" style="width: 100%; padding: 8px; margin-bottom: 8px;">
+                        <ul style="list-style: none; padding: 0; font-size: 12px; line-height: 1.8;">
+                            <li style="color: #4caf50;">✓ 8+ caracteres</li>
+                            <li style="color: #4caf50;">✓ 1 letra maiúscula</li>
+                            <li style="color: #4caf50;">✓ 1 número</li>
+                            <li style="color: #999;">○ 1 caractere especial (!@#$)</li>
+                        </ul>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Feedback visual instantâneo. 
+                            ✓ verde para completado, ○ cinza para pendente. Gamifica criação de senha.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 22: Upload de Arquivos -->
+            <div class="comparison-section">
+                <h2 class="section-title">22. Upload de Arquivos</h2>
+                <div class="section-description">
+                    Drag-and-drop e feedback visual de progresso
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Input padrão</div>
+                        <input type="file" style="font-size: 11px;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Aparência nativa varia por navegador. 
+                            Sem indicação de tipos aceitos ou tamanho máximo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Upload aprimorado</div>
+                        <div style="border: 2px dashed var(--primary-color); border-radius: 8px; padding: 24px; text-align: center; background: var(--primary-light); cursor: pointer;">
+                            <div style="font-size: 32px; margin-bottom: 8px;">📁</div>
+                            <p style="margin: 0 0 4px 0; font-size: 13px; font-weight: 600;">Clique ou arraste arquivos</p>
+                            <p style="margin: 0; font-size: 11px; color: #666;">PNG, JPG até 5MB</p>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Área visual grande. Drag-and-drop. 
+                            Especifica formatos e limite. Ícone reconhecível.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 23: Mensagens de Sucesso -->
+            <div class="comparison-section">
+                <h2 class="section-title">23. Confirmação de Sucesso</h2>
+                <div class="section-description">
+                    Celebre conquistas do usuário apropriadamente
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sucesso sem contexto</div>
+                        <div style="background: green; color: white; padding: 8px; font-size: 12px;">
+                            Sucesso!
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Não explica o que foi bem-sucedido. 
+                            Não oferece próxima ação. Verde muito forte.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sucesso contextual</div>
+                        <div style="background: #d4edda; border: 1px solid #28a745; border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: start;">
+                            <span style="font-size: 24px;">✓</span>
+                            <div style="flex: 1;">
+                                <strong style="display: block; margin-bottom: 4px; color: #155724;">Pedido confirmado!</strong>
+                                <p style="margin: 0 0 8px 0; font-size: 12px; color: #155724;">Seu pedido #12345 foi realizado com sucesso.</p>
+                                <button class="btn btn-primary btn-small">Acompanhar Pedido</button>
+                            </div>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Explica o sucesso, fornece número 
+                            de referência e próxima ação clara.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 24: Autocompletar -->
+            <div class="comparison-section">
+                <h2 class="section-title">24. Autocomplete/Sugestões</h2>
+                <div class="section-description">
+                    Ajude o usuário a digitar menos
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sem sugestões</div>
+                        <input type="text" placeholder="Digite seu endereço completo" style="width: 100%; padding: 8px;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Usuário precisa digitar tudo. 
+                            Aumenta erros de digitação. Processo lento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Com autocomplete</div>
+                        <div style="position: relative;">
+                            <input type="text" value="Rua Augusta" placeholder="Digite o CEP ou endereço" style="width: 100%; padding: 8px;">
+                            <div style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ddd; border-top: none; border-radius: 0 0 6px 6px; margin-top: -1px; z-index: 10;">
+                                <div style="padding: 8px; cursor: pointer; border-bottom: 1px solid #f0f0f0; font-size: 12px;">
+                                    <strong>Rua Augusta</strong>, Consolação, SP
+                                </div>
+                                <div style="padding: 8px; cursor: pointer; font-size: 12px; color: #666;">
+                                    Rua Augusta, Pinheiros, SP
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Sugestões em tempo real economizam 
+                            tempo. Reduzem erros. Melhoram experiência mobile.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 25: Data Picker -->
+            <div class="comparison-section">
+                <h2 class="section-title">25. Seleção de Data</h2>
+                <div class="section-description">
+                    Calendário visual vs input de texto
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Input de texto</div>
+                        <label>Data de nascimento</label>
+                        <input type="text" placeholder="DD/MM/AAAA" style="width: 100%; padding: 8px;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Usuário pode errar formato. 
+                            Sem validação visual. Dificulta seleção.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Date picker visual</div>
+                        <label>Data de nascimento</label>
+                        <div style="display: flex; gap: 8px; margin-top: 6px;">
+                            <select style="padding: 8px; flex: 1;">
+                                <option>Dia</option>
+                                <option>15</option>
+                            </select>
+                            <select style="padding: 8px; flex: 1;">
+                                <option>Mês</option>
+                                <option>Março</option>
+                            </select>
+                            <select style="padding: 8px; flex: 1;">
+                                <option>Ano</option>
+                                <option>1990</option>
+                            </select>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Selects evitam erros de formato. 
+                            Fácil navegar com teclado. Validação automática.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 26: Inline Edit -->
+            <div class="comparison-section">
+                <h2 class="section-title">26. Edição Inline</h2>
+                <div class="section-description">
+                    Edite no contexto sem mudar de página
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Edição com modal</div>
+                        <div style="border: 1px solid #ddd; padding: 12px; border-radius: 6px;">
+                            <p style="margin: 0 0 8px 0; font-size: 13px;"><strong>Nome:</strong> João Silva</p>
+                            <button class="btn btn-secondary btn-small">Editar Nome</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Requer abrir modal/nova página. 
+                            Perde contexto. Processo mais longo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Edição inline</div>
+                        <div style="border: 1px solid #ddd; padding: 12px; border-radius: 6px;">
+                            <label style="font-size: 11px; color: #666; display: block; margin-bottom: 4px;">Nome</label>
+                            <div style="display: flex; gap: 6px; align-items: center;">
+                                <input type="text" value="João Silva" style="flex: 1; padding: 6px; border: 1px solid var(--primary-color);">
+                                <button style="background: none; border: none; color: #4caf50; cursor: pointer; font-size: 18px;" title="Salvar">✓</button>
+                                <button style="background: none; border: none; color: #999; cursor: pointer; font-size: 18px;" title="Cancelar">×</button>
+                            </div>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Edita no contexto. Salvar/cancelar 
+                            visíveis. Rápido e eficiente.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 27: Ordenação de Listas -->
+            <div class="comparison-section">
+                <h2 class="section-title">27. Ordenação (Sorting)</h2>
+                <div class="section-description">
+                    Deixe claro qual ordenação está ativa
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Ordenação oculta</div>
+                        <div style="display: flex; justify-content: space-between; font-size: 11px; padding: 8px; background: #f5f5f5;">
+                            <span>Nome</span>
+                            <span>Preço</span>
+                            <span>Data</span>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Não indica ordem atual. 
+                            Não mostra se é crescente/decrescente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Ordenação visível</div>
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; padding: 8px; background: #f5f5f5;">
+                            <span style="cursor: pointer; color: #666;">Nome</span>
+                            <span style="cursor: pointer; font-weight: 600; color: var(--primary-color); display: flex; align-items: center; gap: 4px;">
+                                Preço ↓
+                            </span>
+                            <span style="cursor: pointer; color: #666;">Data</span>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Coluna ativa destacada. Seta mostra 
+                            direção (↑↓). Clicável e previsível.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 28: Quantidades -->
+            <div class="comparison-section">
+                <h2 class="section-title">28. Seletor de Quantidade</h2>
+                <div class="section-description">
+                    Botões +/- são mais eficientes que input livre
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Input numérico simples</div>
+                        <label>Quantidade</label>
+                        <input type="number" value="1" style="width: 80px; padding: 8px;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Setinhas nativas pequenas. 
+                            Dificulta ajuste rápido. Ruim em mobile.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Controle customizado</div>
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <button style="width: 36px; height: 36px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center;">−</button>
+                            <input type="number" value="3" readonly style="width: 50px; height: 36px; text-align: center; border: 1px solid #ddd; border-radius: 6px; font-weight: 600;">
+                            <button style="width: 36px; height: 36px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center;">+</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Botões grandes (44x44px mínimo). 
+                            Fácil usar em touch. Visual claro.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 29: Visualização de Senha -->
+            <div class="comparison-section">
+                <h2 class="section-title">29. Mostrar/Ocultar Senha</h2>
+                <div class="section-description">
+                    Permita visualizar senha digitada
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sem opção de visualizar</div>
+                        <label>Senha</label>
+                        <input type="password" value="senha123" style="width: 100%; padding: 8px;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Usuário não pode verificar se 
+                            digitou corretamente. Aumenta erros.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Com toggle visual</div>
+                        <label>Senha</label>
+                        <div style="position: relative;">
+                            <input type="text" value="senha123" style="width: 100%; padding: 8px 40px 8px 8px;">
+                            <button style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 18px;" title="Ocultar senha">👁️</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Ícone de olho permite alternar. 
+                            Reduz erros de digitação. Padrão da indústria.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 30: Skeleton Screens -->
+            <div class="comparison-section">
+                <h2 class="section-title">30. Loading de Conteúdo</h2>
+                <div class="section-description">
+                    Skeleton screens são melhores que spinners
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Spinner genérico</div>
+                        <div style="text-align: center; padding: 40px;">
+                            <div class="loading-spinner"></div>
+                            <p style="margin-top: 12px; color: #666; font-size: 12px;">Carregando...</p>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Não indica o que está carregando. 
+                            Tela vazia causa ansiedade. Parece mais lento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Skeleton screen</div>
+                        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 12px;">
+                            <div style="width: 100%; height: 80px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; margin-bottom: 8px;"></div>
+                            <div style="width: 70%; height: 12px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; margin-bottom: 6px;"></div>
+                            <div style="width: 50%; height: 12px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px;"></div>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Mostra estrutura do conteúdo. 
+                            Parece mais rápido. Reduz ansiedade percebida.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                @keyframes shimmer {
+                    0% { background-position: -200% 0; }
+                    100% { background-position: 200% 0; }
+                }
+            </style>
+
+            <!-- Resumo Final -->
+            <div class="comparison-section" style="margin-top: var(--spacing-3xl);">
+                <div style="background: var(--primary-light); padding: var(--spacing-2xl); border-radius: var(--radius-xl); text-align: center;">
+                    <h2 style="margin-bottom: var(--spacing-md); color: var(--primary-hover);">
+                        🎓 30 Comparações Completas!
+                    </h2>
+                    <p style="margin-bottom: var(--spacing-lg); font-size: var(--font-size-lg);">
+                        Você viu exemplos práticos de boas e más práticas de UX
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-xl);">
+                        <div style="background: white; padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">✅</div>
+                            <strong style="font-size: var(--font-size-xl); color: var(--primary-color);">30</strong>
+                            <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">Boas Práticas</p>
+                        </div>
+                        <div style="background: white; padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">❌</div>
+                            <strong style="font-size: var(--font-size-xl); color: var(--danger-color);">30</strong>
+                            <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">Más Práticas</p>
+                        </div>
+                        <div style="background: white; padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">💡</div>
+                            <strong style="font-size: var(--font-size-xl); color: var(--primary-color);">60+</strong>
+                            <p style="margin: 0; font-size: var(--font-size-sm); color: var(--text-secondary);">Explicações</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                        <a href="comparacao.html" class="btn btn-secondary btn-large">← Ver Comparações Básicas</a>
+                        <a href="exercicios/exercicios.html" class="btn btn-primary btn-large">Fazer Exercícios →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 UX Shop - Projeto Educacional</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

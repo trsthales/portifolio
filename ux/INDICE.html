@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Índice do Projeto - UX Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .index-page {
+            padding: var(--spacing-2xl) 0;
+            min-height: 100vh;
+        }
+        .index-card {
+            background: var(--bg-primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-fast);
+        }
+        .index-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .index-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+        .index-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        .index-links {
+            display: grid;
+            gap: var(--spacing-sm);
+        }
+        .index-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        .index-link:hover {
+            background: var(--primary-light);
+            transform: translateX(4px);
+        }
+        .link-info {
+            flex: 1;
+        }
+        .link-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        .link-desc {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        .link-arrow {
+            font-size: var(--font-size-xl);
+            color: var(--primary-color);
+        }
+        .hero-index {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: white;
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+        .hero-index h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+        }
+        .hero-index p {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <main class="index-page">
+        <div class="container">
+            <div class="hero-index">
+                <h1>📚 Índice Completo do Projeto</h1>
+                <p>Guia completo para navegar por todos os recursos de aprendizado</p>
+            </div>
+
+            <!-- Documentação -->
+            <div class="index-section">
+                <div class="index-card">
+                    <h2 class="index-title">📖 Documentação</h2>
+                    <div class="index-links">
+                        <a href="RESUMO.md" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">📊 RESUMO.md</div>
+                                <div class="link-desc">Visão geral executiva - Comece aqui!</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="INDICE_COMPARACOES.md" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">📋 INDICE_COMPARACOES.md</div>
+                                <div class="link-desc">Lista completa dos 30 exemplos comparativos</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="COMO_USAR.md" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">🚀 COMO_USAR.md</div>
+                                <div class="link-desc">Instruções detalhadas passo a passo</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="GUIA_UX.md" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">📘 GUIA_UX.md</div>
+                                <div class="link-desc">Guia completo de boas e más práticas com exemplos</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="README.md" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">📄 README.md</div>
+                                <div class="link-desc">Introdução e estrutura do projeto</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Site -->
+            <div class="index-section">
+                <div class="index-card">
+                    <h2 class="index-title">🌐 Navegação do Site</h2>
+                    <div class="index-links">
+                        <a href="index.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">🏠 index.html</div>
+                                <div class="link-desc">Página inicial - Hero, features, produtos em destaque</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="comparacao.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">⚖️ comparacao.html</div>
+                                <div class="link-desc">20 Comparações BÁSICAS: boas vs más práticas</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="comparacao-avancada.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">⚡ comparacao-avancada.html</div>
+                                <div class="link-desc">10 Comparações AVANÇADAS: situações complexas</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="exercicios/exercicios.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">🧪 exercicios.html</div>
+                                <div class="link-desc">5 exercícios interativos com sistema de pontuação</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce -->
+            <div class="index-section">
+                <div class="index-card">
+                    <h2 class="index-title">🛒 Páginas do E-commerce</h2>
+                    <div class="index-links">
+                        <a href="pages/produtos.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">📦 produtos.html</div>
+                                <div class="link-desc">Listagem completa com filtros, busca e ordenação</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="pages/cadastro.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">📝 cadastro.html</div>
+                                <div class="link-desc">Formulário com validação, máscaras e força de senha</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="pages/carrinho.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">🛒 carrinho.html</div>
+                                <div class="link-desc">Gestão de carrinho com quantidades e cupom</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="pages/checkout.html" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">💳 checkout.html</div>
+                                <div class="link-desc">Finalização com progresso e múltiplos pagamentos</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Código Fonte -->
+            <div class="index-section">
+                <div class="index-card">
+                    <h2 class="index-title">💻 Código Fonte</h2>
+                    <div class="index-links">
+                        <a href="css/style.css" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">✅ css/style.css</div>
+                                <div class="link-desc">800+ linhas de BOAS práticas de CSS</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="css/bad-practices.css" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">❌ css/bad-practices.css</div>
+                                <div class="link-desc">300+ linhas de MÁS práticas documentadas</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                        <a href="js/app.js" class="index-link">
+                            <div class="link-info">
+                                <div class="link-title">⚡ js/app.js</div>
+                                <div class="link-desc">600+ linhas de JavaScript com gestão de estado</div>
+                            </div>
+                            <span class="link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recursos de Aprendizado -->
+            <div class="index-section">
+                <div class="index-card">
+                    <h2 class="index-title">🎓 Recursos de Aprendizado</h2>
+                    
+                    <h3 style="margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md); font-size: var(--font-size-lg);">
+                        📚 O que você vai encontrar:
+                    </h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: var(--spacing-sm) 0;">✅ 60+ exemplos de boas práticas</li>
+                        <li style="padding: var(--spacing-sm) 0;">❌ 60+ exemplos de más práticas</li>
+                        <li style="padding: var(--spacing-sm) 0;">💬 500+ comentários explicativos no código</li>
+                        <li style="padding: var(--spacing-sm) 0;">🧪 5 exercícios práticos interativos</li>
+                        <li style="padding: var(--spacing-sm) 0;">📊 30 comparações visuais detalhadas (NOVO! 🎉)</li>
+                        <li style="padding: var(--spacing-sm) 0;">📖 Guia completo de UX Design</li>
+                        <li style="padding: var(--spacing-sm) 0;">🎯 Checklist de validação</li>
+                    </ul>
+
+                    <h3 style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md); font-size: var(--font-size-lg);">
+                        🎯 Conceitos Principais:
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md);">
+                        <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">♿</div>
+                            <strong>Acessibilidade</strong>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">📝</div>
+                            <strong>Formulários</strong>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">📱</div>
+                            <strong>Responsividade</strong>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">💬</div>
+                            <strong>Feedback</strong>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">🎨</div>
+                            <strong>Hierarquia Visual</strong>
+                        </div>
+                        <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-md);">
+                            <div style="font-size: 2rem; margin-bottom: var(--spacing-xs);">⚡</div>
+                            <strong>Performance</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sugestão de Ordem de Estudo -->
+            <div class="index-section">
+                <div class="index-card" style="background: var(--primary-light);">
+                    <h2 class="index-title" style="color: var(--primary-hover);">
+                        🎯 Ordem Sugerida de Estudo
+                    </h2>
+                    <ol style="line-height: 2;">
+                        <li><strong>RESUMO.md</strong> - Visão geral (15 min)</li>
+                        <li><strong>index.html</strong> - Explore o site (20 min)</li>
+                        <li><strong>INDICE_COMPARACOES.md</strong> - Lista dos 30 exemplos (10 min)</li>
+                        <li><strong>comparacao.html</strong> - 20 comparações básicas (60 min)</li>
+                        <li><strong>comparacao-avancada.html</strong> - 10 comparações avançadas (40 min)</li>
+                        <li><strong>exercicios.html</strong> - Faça os 5 exercícios (45 min)</li>
+                        <li><strong>GUIA_UX.md</strong> - Estude o guia completo (2 horas)</li>
+                        <li><strong>Código fonte</strong> - Leia os comentários (3-5 horas)</li>
+                        <li><strong>Experimente</strong> - Modifique e teste (livre)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- CTA Final -->
+            <div style="text-align: center; margin-top: var(--spacing-3xl);">
+                <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--spacing-md);">
+                    Pronto para começar? 🚀
+                </h2>
+                <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                    <a href="RESUMO.md" class="btn btn-primary btn-large">
+                        📖 Ler Resumo
+                    </a>
+                    <a href="index.html" class="btn btn-secondary btn-large">
+                        🏠 Ver Site
+                    </a>
+                    <a href="exercicios/exercicios.html" class="btn btn-secondary btn-large">
+                        🧪 Fazer Exercícios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 UX Shop - Projeto Educacional Completo</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout HTML - Guia Completo</title>
+    <style>
+        /* Reset básico: remove margens e aplica box-sizing uniforme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 { 
+            color: #2c3e50; 
+            border-bottom: 3px solid #27ae60; 
+            padding-bottom: 10px; 
+            margin-bottom: 20px;
+        }
+        h2 { 
+            color: #34495e; 
+            margin-top: 30px; 
+            margin-bottom: 15px;
+        }
+        h3 { 
+            color: #7f8c8d; 
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .codigo {
+            background-color: #f4f4f4;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .destaque {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        .exemplo {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 2px solid #27ae60;
+        }
+        
+        /* ===== EXEMPLOS DE LAYOUT ===== */
+        
+        /* Layout Tradicional: estrutura com header, nav, main, aside e footer */
+        .layout-tradicional {
+            border: 2px solid #3498db;
+            margin: 20px 0;
+        }
+        .layout-tradicional header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .layout-tradicional nav {
+            background-color: #34495e;
+            padding: 10px;
+        }
+        .layout-tradicional nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .layout-tradicional nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .layout-tradicional .conteudo {
+            display: flex;
+        }
+        .layout-tradicional main {
+            flex: 3;
+            padding: 20px;
+            background-color: #ecf0f1;
+        }
+        .layout-tradicional aside {
+            flex: 1;
+            padding: 20px;
+            background-color: #bdc3c7;
+        }
+        .layout-tradicional footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        /* Layout Grid: CSS Grid com áreas nomeadas para organização semântica */
+        .layout-grid {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "nav nav nav"
+                "sidebar main main"
+                "footer footer footer";
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-columns: 200px 1fr 1fr;
+            gap: 10px;
+            min-height: 400px;
+            border: 2px solid #9b59b6;
+        }
+        .layout-grid header { grid-area: header; background: #8e44ad; color: white; padding: 20px; }
+        .layout-grid nav { grid-area: nav; background: #9b59b6; color: white; padding: 10px; }
+        .layout-grid aside { grid-area: sidebar; background: #d7bde2; padding: 20px; }
+        .layout-grid main { grid-area: main; background: #f4ecf7; padding: 20px; }
+        .layout-grid footer { grid-area: footer; background: #8e44ad; color: white; padding: 15px; text-align: center; }
+        
+        /* Layout Flexbox: direção column e flex para distribuição dinâmica */
+        .layout-flex {
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+            border: 2px solid #e74c3c;
+        }
+        .layout-flex header {
+            background: #c0392b;
+            color: white;
+            padding: 20px;
+        }
+        .layout-flex .main-content {
+            display: flex;
+            flex: 1;
+        }
+        .layout-flex nav {
+            background: #e74c3c;
+            color: white;
+            padding: 20px;
+            width: 200px;
+        }
+        .layout-flex main {
+            flex: 1;
+            background: #fadbd8;
+            padding: 20px;
+        }
+        .layout-flex footer {
+            background: #c0392b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        /* Cards Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        /* Holy Grail Layout */
+        .holy-grail {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "left main right"
+                "footer footer footer";
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 150px 1fr 150px;
+            gap: 10px;
+            min-height: 400px;
+            border: 2px solid #16a085;
+        }
+        .holy-grail .hg-header { grid-area: header; background: #1abc9c; color: white; padding: 20px; text-align: center; }
+        .holy-grail .hg-left { grid-area: left; background: #48c9b0; padding: 20px; }
+        .holy-grail .hg-main { grid-area: main; background: #d1f2eb; padding: 20px; }
+        .holy-grail .hg-right { grid-area: right; background: #48c9b0; padding: 20px; }
+        .holy-grail .hg-footer { grid-area: footer; background: #1abc9c; color: white; padding: 15px; text-align: center; }
+        
+        /* Tabela de comparação */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>🏗️ LAYOUT HTML - Guia Definitivo</h1>
+
+        <h2>1. Elementos Semânticos HTML5 para Layout</h2>
+        <div class="destaque">
+            <strong>HTML5 introduziu tags semânticas</strong> que descrevem o propósito do conteúdo:
+            <ul>
+                <li><code>&lt;header&gt;</code> - Cabeçalho da página ou seção</li>
+                <li><code>&lt;nav&gt;</code> - Navegação principal</li>
+                <li><code>&lt;main&gt;</code> - Conteúdo principal da página</li>
+                <li><code>&lt;section&gt;</code> - Seção temática de conteúdo</li>
+                <li><code>&lt;article&gt;</code> - Conteúdo independente e autossuficiente</li>
+                <li><code>&lt;aside&gt;</code> - Conteúdo relacionado/complementar (sidebar)</li>
+                <li><code>&lt;footer&gt;</code> - Rodapé da página ou seção</li>
+            </ul>
+        </div>
+
+        <h3>Estrutura HTML5 Básica:</h3>
+        <div class="codigo">
+            <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Meu Site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Nome do Site&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#sobre"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Título do Artigo&lt;/h2&gt;
+            &lt;p&gt;Conteúdo...&lt;/p&gt;
+        &lt;/article&gt;
+        
+        &lt;aside&gt;
+            &lt;h3&gt;Sidebar&lt;/h3&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2025 Meu Site&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+
+        <h2>2. Layout Tradicional (Header, Nav, Main, Sidebar, Footer)</h2>
+        <div class="exemplo">
+            <div class="layout-tradicional">
+                <header>
+                    <h2>Cabeçalho do Site</h2>
+                </header>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+                <div class="conteudo">
+                    <main>
+                        <h3>Conteúdo Principal</h3>
+                        <p>Este é o conteúdo principal da página. Aqui vai o texto, imagens, artigos, etc.</p>
+                    </main>
+                    <aside>
+                        <h3>Sidebar</h3>
+                        <p>Conteúdo lateral complementar.</p>
+                    </aside>
+                </div>
+                <footer>
+                    <p>&copy; 2025 - Todos os direitos reservados</p>
+                </footer>
+            </div>
+        </div>
+
+        <div class="codigo">
+            <pre>&lt;div class="layout-tradicional"&gt;
+    &lt;header&gt;Cabeçalho&lt;/header&gt;
+    &lt;nav&gt;Navegação&lt;/nav&gt;
+    &lt;div class="conteudo"&gt;
+        &lt;main&gt;Conteúdo Principal&lt;/main&gt;
+        &lt;aside&gt;Sidebar&lt;/aside&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;Rodapé&lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.conteudo {
+    display: flex;
+}
+main {
+    flex: 3;
+}
+aside {
+    flex: 1;
+}
+&lt;/style&gt;</pre>
+        </div>
+
+        <h2>3. Layout com CSS Grid</h2>
+        <div class="exemplo">
+            <div class="layout-grid">
+                <header><h3>Header</h3></header>
+                <nav><strong>Navegação</strong></nav>
+                <aside>
+                    <strong>Sidebar</strong>
+                    <ul>
+                        <li>Link 1</li>
+                        <li>Link 2</li>
+                        <li>Link 3</li>
+                    </ul>
+                </aside>
+                <main>
+                    <h3>Conteúdo Principal</h3>
+                    <p>Layout criado com CSS Grid. Grid é perfeito para layouts bidimensionais (linhas e colunas).</p>
+                </main>
+                <footer>Footer</footer>
+            </div>
+        </div>
+
+        <div class="codigo">
+            <pre>.layout-grid {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "sidebar main main"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 10px;
+}
+
+header { grid-area: header; }
+nav { grid-area: nav; }
+aside { grid-area: sidebar; }
+main { grid-area: main; }
+footer { grid-area: footer; }</pre>
+        </div>
+
+        <h2>4. Layout com Flexbox</h2>
+        <div class="exemplo">
+            <div class="layout-flex">
+                <header><h3>Header com Flexbox</h3></header>
+                <div class="main-content">
+                    <nav>
+                        <strong>Menu</strong>
+                        <ul style="list-style: none; margin-top: 10px;">
+                            <li>Home</li>
+                            <li>Sobre</li>
+                            <li>Contato</li>
+                        </ul>
+                    </nav>
+                    <main>
+                        <h3>Conteúdo Principal</h3>
+                        <p>Layout criado com Flexbox. Flexbox é ideal para layouts unidimensionais (uma direção: linha ou coluna).</p>
+                    </main>
+                </div>
+                <footer>Footer Flexbox</footer>
+            </div>
+        </div>
+
+        <div class="codigo">
+            <pre>.layout-flex {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+}
+
+nav {
+    width: 200px;
+}
+
+main {
+    flex: 1;
+}</pre>
+        </div>
+
+        <h2>5. Holy Grail Layout</h2>
+        <div class="destaque">
+            <strong>Holy Grail Layout</strong> é um padrão clássico com:
+            <ul>
+                <li>Header no topo</li>
+                <li>Três colunas: sidebar esquerda, conteúdo central, sidebar direita</li>
+                <li>Footer no rodapé</li>
+            </ul>
+        </div>
+
+        <div class="exemplo">
+            <div class="holy-grail">
+                <div class="hg-header"><h3>Header</h3></div>
+                <div class="hg-left">
+                    <strong>Left Sidebar</strong>
+                    <ul style="margin-top: 10px; list-style: none;">
+                        <li>Menu 1</li>
+                        <li>Menu 2</li>
+                    </ul>
+                </div>
+                <div class="hg-main">
+                    <h3>Conteúdo Principal</h3>
+                    <p>Este é o layout Holy Grail, muito usado em portais e sites de notícias.</p>
+                </div>
+                <div class="hg-right">
+                    <strong>Right Sidebar</strong>
+                    <p style="margin-top: 10px; font-size: 14px;">Ads, widgets, links relacionados</p>
+                </div>
+                <div class="hg-footer">Footer</div>
+            </div>
+        </div>
+
+        <div class="codigo">
+            <pre>.holy-grail {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "left main right"
+        "footer footer footer";
+    grid-template-columns: 150px 1fr 150px;
+    gap: 10px;
+}
+
+.hg-header { grid-area: header; }
+.hg-left { grid-area: left; }
+.hg-main { grid-area: main; }
+.hg-right { grid-area: right; }
+.hg-footer { grid-area: footer; }</pre>
+        </div>
+
+        <h2>6. Layout de Cards Responsivo</h2>
+        <div class="exemplo">
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>Card 1</h4>
+                    <p>Descrição do primeiro card. Grid responsivo que se adapta automaticamente.</p>
+                </div>
+                <div class="card">
+                    <h4>Card 2</h4>
+                    <p>Segundo card com conteúdo interessante e relevante.</p>
+                </div>
+                <div class="card">
+                    <h4>Card 3</h4>
+                    <p>Terceiro card completando o layout de grid.</p>
+                </div>
+                <div class="card">
+                    <h4>Card 4</h4>
+                    <p>Mais um card para demonstrar a responsividade.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="codigo">
+            <pre>.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+}</pre>
+        </div>
+
+        <h2>7. Comparação: Grid vs Flexbox</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Característica</th>
+                    <th>CSS Grid</th>
+                    <th>Flexbox</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Dimensão</strong></td>
+                    <td>2D (linhas E colunas)</td>
+                    <td>1D (linha OU coluna)</td>
+                </tr>
+                <tr>
+                    <td><strong>Melhor para</strong></td>
+                    <td>Layouts de página completos</td>
+                    <td>Componentes e alinhamento</td>
+                </tr>
+                <tr>
+                    <td><strong>Controle</strong></td>
+                    <td>Container controla o layout</td>
+                    <td>Itens têm mais flexibilidade</td>
+                </tr>
+                <tr>
+                    <td><strong>Espaçamento</strong></td>
+                    <td>gap entre linhas e colunas</td>
+                    <td>gap entre itens</td>
+                </tr>
+                <tr>
+                    <td><strong>Uso típico</strong></td>
+                    <td>Estrutura da página</td>
+                    <td>Navegação, cards, botões</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>8. Elementos Semânticos Detalhados</h2>
+
+        <h3>8.1. &lt;header&gt;</h3>
+        <div class="destaque">
+            <strong>Uso:</strong> Cabeçalho da página ou de uma seção
+            <ul>
+                <li>Geralmente contém logo, título, navegação</li>
+                <li>Pode haver múltiplos headers (um por seção/article)</li>
+            </ul>
+        </div>
+        <div class="codigo">
+            <pre>&lt;header&gt;
+    &lt;img src="logo.png" alt="Logo"&gt;
+    &lt;h1&gt;Nome do Site&lt;/h1&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;</pre>
+        </div>
+
+        <h3>8.2. &lt;nav&gt;</h3>
+        <div class="destaque">
+            <strong>Uso:</strong> Links de navegação principal
+            <ul>
+                <li>Normalmente contém menu principal</li>
+                <li>Não use para todos os links, só navegação principal</li>
+            </ul>
+        </div>
+        <div class="codigo">
+            <pre>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/sobre"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contato"&gt;Contato&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+        </div>
+
+        <h3>8.3. &lt;main&gt;</h3>
+        <div class="destaque">
+            <strong>Uso:</strong> Conteúdo principal da página
+            <ul>
+                <li>Apenas UM &lt;main&gt; por página</li>
+                <li>Contém o conteúdo único da página</li>
+                <li>Exclui header, footer, nav, sidebar</li>
+            </ul>
+        </div>
+        <div class="codigo">
+            <pre>&lt;main&gt;
+    &lt;h1&gt;Título Principal&lt;/h1&gt;
+    &lt;p&gt;Conteúdo principal...&lt;/p&gt;
+&lt;/main&gt;</pre>
+        </div>
+
+        <h3>8.4. &lt;section&gt;</h3>
+        <div class="destaque">
+            <strong>Uso:</strong> Seção temática de conteúdo
+            <ul>
+                <li>Agrupa conteúdo relacionado</li>
+                <li>Geralmente tem um heading (h1-h6)</li>
+            </ul>
+        </div>
+        <div class="codigo">
+            <pre>&lt;section&gt;
+    &lt;h2&gt;Nossos Serviços&lt;/h2&gt;
+    &lt;p&gt;Descrição dos serviços...&lt;/p&gt;
+&lt;/section&gt;</pre>
+        </div>
+
+        <h3>8.5. &lt;article&gt;</h3>
+        <div class="destaque">
+            <strong>Uso:</strong> Conteúdo independente e autossuficiente
+            <ul>
+                <li>Pode ser distribuído separadamente</li>
+                <li>Posts de blog, notícias, comentários</li>
+            </ul>
+        </div>
+        <div class="codigo">
+            <pre>&lt;article&gt;
+    &lt;h2&gt;Título do Post&lt;/h2&gt;
+    &lt;p&gt;Conteúdo do post...&lt;/p&gt;
+    &lt;footer&gt;Publicado em 02/11/2025&lt;/footer&gt;
+&lt;/article&gt;</pre>
+        </div>
+
+        <h3>8.6. &lt;aside&gt;</h3>
+        <div class="destaque">
+            <strong>Uso:</strong> Conteúdo relacionado/complementar
+            <ul>
+                <li>Sidebars, widgets</li>
+                <li>Informações adicionais</li>
+            </ul>
+        </div>
+        <div class="codigo">
+            <pre>&lt;aside&gt;
+    &lt;h3&gt;Posts Relacionados&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Post 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Post 2&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/aside&gt;</pre>
+        </div>
+
+        <h3>8.7. &lt;footer&gt;</h3>
+        <div class="destaque">
+            <strong>Uso:</strong> Rodapé da página ou seção
+            <ul>
+                <li>Informações de copyright, contato</li>
+                <li>Links secundários</li>
+                <li>Pode haver múltiplos footers</li>
+            </ul>
+        </div>
+        <div class="codigo">
+            <pre>&lt;footer&gt;
+    &lt;p&gt;&copy; 2025 Minha Empresa&lt;/p&gt;
+    &lt;nav&gt;
+        &lt;a href="/privacidade"&gt;Privacidade&lt;/a&gt;
+        &lt;a href="/termos"&gt;Termos&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/footer&gt;</pre>
+        </div>
+
+        <h2>9. Layout Completo - Exemplo Prático</h2>
+        <div class="codigo">
+            <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Blog Pessoal&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="site-header"&gt;
+        &lt;div class="container"&gt;
+            &lt;h1&gt;Meu Blog&lt;/h1&gt;
+            &lt;nav&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/sobre"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/blog"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/contato"&gt;Contato&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main class="container"&gt;
+        &lt;section class="posts"&gt;
+            &lt;article class="post"&gt;
+                &lt;header&gt;
+                    &lt;h2&gt;Título do Post&lt;/h2&gt;
+                    &lt;p class="meta"&gt;Por João Silva em 02/11/2025&lt;/p&gt;
+                &lt;/header&gt;
+                &lt;p&gt;Conteúdo do post...&lt;/p&gt;
+                &lt;footer&gt;
+                    &lt;a href="#"&gt;Ler mais&lt;/a&gt;
+                &lt;/footer&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;aside class="sidebar"&gt;
+            &lt;section class="widget"&gt;
+                &lt;h3&gt;Sobre Mim&lt;/h3&gt;
+                &lt;p&gt;Desenvolvedor apaixonado por tecnologia.&lt;/p&gt;
+            &lt;/section&gt;
+            
+            &lt;section class="widget"&gt;
+                &lt;h3&gt;Posts Recentes&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Post 1&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Post 2&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/section&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer class="site-footer"&gt;
+        &lt;div class="container"&gt;
+            &lt;p&gt;&copy; 2025 Meu Blog. Todos os direitos reservados.&lt;/p&gt;
+            &lt;nav&gt;
+                &lt;a href="/privacidade"&gt;Privacidade&lt;/a&gt;
+                &lt;a href="/termos"&gt;Termos&lt;/a&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+
+        <h2>📝 Resumo - Boas Práticas de Layout</h2>
+        <div class="destaque">
+            <ol>
+                <li>Use <strong>tags semânticas</strong> HTML5 em vez de divs genéricas</li>
+                <li>Use <strong>CSS Grid</strong> para layouts 2D (página completa)</li>
+                <li>Use <strong>Flexbox</strong> para layouts 1D (componentes, alinhamento)</li>
+                <li>Apenas <strong>um &lt;main&gt;</strong> por página</li>
+                <li>Use <strong>&lt;header&gt;</strong> e <strong>&lt;footer&gt;</strong> semanticamente</li>
+                <li>Agrupe conteúdo relacionado com <strong>&lt;section&gt;</strong></li>
+                <li>Use <strong>&lt;article&gt;</strong> para conteúdo independente</li>
+                <li>Sidebars vão em <strong>&lt;aside&gt;</strong></li>
+                <li>Navegação principal em <strong>&lt;nav&gt;</strong></li>
+                <li>Pense em <strong>acessibilidade</strong> e <strong>SEO</strong></li>
+                <li>Torne o layout <strong>responsivo</strong> desde o início</li>
+                <li>Use classes CSS descritivas e organizadas</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

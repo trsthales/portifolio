@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Avançado - Do Avançado ao Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #f97316;
+            --secondary: #dc2626;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --code-bg: #1e1e1e;
+            --sidebar-width: 320px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: white;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+            overflow-y: auto;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.6em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .sidebar-header .subtitle {
+            font-size: 0.9em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .sidebar-header .level-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .module-group {
+            padding: 15px 10px;
+        }
+
+        .group-title {
+            font-size: 0.75em;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 20px 15px 8px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .group-title .icon {
+            font-size: 1.3em;
+        }
+
+        .module-item {
+            padding: 14px 18px;
+            margin: 6px 0;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .module-item:hover {
+            background: var(--light);
+            transform: translateX(8px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .module-item.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-weight: 600;
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+        }
+
+        .module-icon {
+            font-size: 1.4em;
+            width: 35px;
+            text-align: center;
+        }
+
+        .module-name {
+            flex: 1;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .difficulty-badge {
+            font-size: 0.7em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: #e5e7eb;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .module-item.active .difficulty-badge {
+            background: rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        /* MAIN CONTENT - igual ao básico mas cores diferentes */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .content-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            min-height: calc(100vh - 80px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid var(--primary);
+            font-size: 2.5em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h3 {
+            color: var(--secondary);
+            margin: 35px 0 20px;
+            font-size: 1.6em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h4 {
+            color: var(--dark);
+            margin: 25px 0 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin: 15px 0;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.92em;
+            line-height: 1.6;
+        }
+
+        .inline-code {
+            background: #f3f4f6;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e91e63;
+            font-weight: 600;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            margin: 12px 8px 12px 0;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .demo-button:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        .output-box {
+            background: var(--light);
+            border: 3px solid #d1d5db;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            white-space: pre-wrap;
+            font-size: 0.95em;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .info-box, .warning-box, .success-box, .danger-box {
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-color: #3b82f6;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-color: var(--warning);
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: var(--success);
+        }
+
+        .danger-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-color: var(--danger);
+        }
+
+        ul, ol {
+            margin: 20px 0 20px 40px;
+        }
+
+        li {
+            margin: 12px 0;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tr:hover {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>🔥 JavaScript</h1>
+            <p class="subtitle">Do Avançado ao Expert</p>
+            <div class="level-badge">🟠 🔴 Níveis 3 & 4</div>
+        </div>
+
+        <nav class="module-group">
+            <!-- NÍVEL 3: AVANÇADO -->
+            <div class="group-title">
+                <span class="icon">🟠</span>
+                <span>Nível 3 - Avançado</span>
+            </div>
+            
+            <div class="module-item active" data-module="intro">
+                <span class="module-icon">🎯</span>
+                <span class="module-name">Bem-vindo Expert</span>
+                <span class="difficulty-badge">★★★☆☆</span>
+            </div>
+
+            <div class="module-item" data-module="callbacks">
+                <span class="module-icon">📞</span>
+                <span class="module-name">Callbacks</span>
+                <span class="difficulty-badge">★★★★☆</span>
+            </div>
+
+            <div class="module-item" data-module="async">
+                <span class="module-icon">⚡</span>
+                <span class="module-name">Async/Await</span>
+                <span class="difficulty-badge">★★★★☆</span>
+            </div>
+
+            <div class="module-item" data-module="ajax">
+                <span class="module-icon">📡</span>
+                <span class="module-name">AJAX & HTTP</span>
+                <span class="difficulty-badge">★★★★☆</span>
+            </div>
+
+            <div class="module-item" data-module="modules">
+                <span class="module-icon">📦</span>
+                <span class="module-name">Módulos ES6</span>
+                <span class="difficulty-badge">★★★★☆</span>
+            </div>
+
+            <!-- NÍVEL 4: EXPERT -->
+            <div class="group-title">
+                <span class="icon">🔴</span>
+                <span>Nível 4 - Expert</span>
+            </div>
+
+            <div class="module-item" data-module="patterns">
+                <span class="module-icon">🎨</span>
+                <span class="module-name">Design Patterns</span>
+                <span class="difficulty-badge">★★★★★</span>
+            </div>
+
+            <div class="module-item" data-module="bestpractices">
+                <span class="module-icon">✨</span>
+                <span class="module-name">Melhores Práticas</span>
+                <span class="difficulty-badge">★★★★★</span>
+            </div>
+
+            <div class="module-item" data-module="performance">
+                <span class="module-icon">⚡</span>
+                <span class="module-name">Performance</span>
+                <span class="difficulty-badge">★★★★★</span>
+            </div>
+
+            <div class="module-item" data-module="versions">
+                <span class="module-icon">📅</span>
+                <span class="module-name">ES6 até ES2024</span>
+                <span class="difficulty-badge">★★★★★</span>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-card" id="content-card">
+            <div id="content"></div>
+        </div>
+    </main>
+
+    <!-- JavaScript - Ordem importa! -->
+    <script src="app-advanced.js"></script>              <!-- Intro, Callbacks -->
+    <script src="modules-advanced-part2.js"></script>    <!-- Async/Await -->
+    <script src="modules-advanced-part3.js"></script>    <!-- AJAX, Modules, Patterns, Best Practices, Performance, Versions -->
+    <script src="demos-advanced.js"></script>            <!-- Funções de demonstração -->
+    <script src="modules-integration-advanced.js"></script> <!-- Integração e navegação -->
+</body>
+</html>

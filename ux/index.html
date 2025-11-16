@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="E-commerce educacional - Aprenda boas práticas de UX">
+    <title>UX Shop - Home | Aprenda UX na Prática</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 
+    ✅ BOA PRÁTICA: Header fixo com navegação clara
+    - Facilita acesso às principais seções
+    - Mantém contexto durante rolagem
+    - Ícones intuitivos com labels
+    -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo à esquerda - padrão ocidental de leitura -->
+                <a href="index.html" class="logo" aria-label="Página inicial">
+                    <span class="logo-icon">🛍️</span>
+                    <span class="logo-text">UX Shop</span>
+                </a>
+
+                <!-- 
+                ✅ BOA PRÁTICA: Barra de busca visível e acessível
+                - Placeholder descritivo
+                - Ícone de busca reconhecível
+                - Campo amplo para digitação
+                -->
+                <form class="search-form" role="search">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        placeholder="Buscar produtos..."
+                        aria-label="Buscar produtos"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-button" aria-label="Realizar busca">
+                        🔍
+                    </button>
+                </form>
+
+                <!-- Navegação principal -->
+                <nav class="main-nav" aria-label="Navegação principal">
+                    <a href="pages/produtos.html" class="nav-link">
+                        <span class="nav-icon">📦</span>
+                        <span>Produtos</span>
+                    </a>
+                    <a href="pages/carrinho.html" class="nav-link">
+                        <span class="nav-icon">🛒</span>
+                        <span>Carrinho</span>
+                        <!-- ✅ Badge com contador de itens -->
+                        <span class="badge" id="cart-count">0</span>
+                    </a>
+                    <a href="pages/cadastro.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Minha Conta</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 
+        ✅ BOA PRÁTICA: Hero section com call-to-action claro
+        - Mensagem direta e objetiva
+        - Botão de ação destacado
+        - Contraste adequado para leitura
+        -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Aprenda UX Design na Prática
+                    </h1>
+                    <p class="hero-subtitle">
+                        Um e-commerce completo com exemplos de boas e más práticas de UX. 
+                        Explore, aprenda e pratique!
+                    </p>
+                    <div class="hero-actions">
+                        <a href="pages/produtos.html" class="btn btn-primary btn-large">
+                            Ver Produtos
+                        </a>
+                        <a href="comparacao.html" class="btn btn-secondary btn-large">
+                            Ver Comparações
+                        </a>
+                        <a href="exercicios/exercicios.html" class="btn btn-secondary btn-large">
+                            Fazer Exercícios
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ✅ BOA PRÁTICA: Cards informativos com ícones
+        - Informação escaneável rapidamente
+        - Ícones ajudam na compreensão
+        - Layout em grid responsivo
+        -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">O Que Você Vai Aprender</h2>
+                
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3 class="feature-title">Boas Práticas</h3>
+                        <p class="feature-description">
+                            Exemplos reais de interfaces bem desenhadas, 
+                            com explicações detalhadas do porquê funcionam.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">❌</div>
+                        <h3 class="feature-title">Más Práticas</h3>
+                        <p class="feature-description">
+                            Aprenda com erros comuns e entenda o que 
+                            deve ser evitado em seus projetos.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🧪</div>
+                        <h3 class="feature-title">Exercícios Práticos</h3>
+                        <p class="feature-description">
+                            Teste seus conhecimentos com desafios 
+                            interativos e receba feedback imediato.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">♿</div>
+                        <h3 class="feature-title">Acessibilidade</h3>
+                        <p class="feature-description">
+                            Aprenda a criar interfaces inclusivas que 
+                            funcionam para todos os usuários.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title">Design Responsivo</h3>
+                        <p class="feature-description">
+                            Técnicas para criar experiências perfeitas 
+                            em qualquer tamanho de tela.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3 class="feature-title">Microinterações</h3>
+                        <p class="feature-description">
+                            Detalhes que fazem a diferença: feedback, 
+                            animações e estados visuais.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ✅ BOA PRÁTICA: Seção de produtos em destaque
+        - Preview do conteúdo principal
+        - Layout de cards consistente
+        - Informações essenciais visíveis
+        -->
+        <section class="products-preview">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Produtos em Destaque</h2>
+                    <a href="pages/produtos.html" class="link-more">Ver todos →</a>
+                </div>
+
+                <div class="products-grid" id="featured-products">
+                    <!-- Produtos serão carregados via JavaScript -->
+                    <!-- ✅ BOA PRÁTICA: Skeleton loading para melhor UX percebida -->
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ✅ BOA PRÁTICA: CTA secundário antes do footer
+        - Reforça ação principal
+        - Design destacado do conteúdo
+        -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Pronto para Praticar?</h2>
+                    <p class="cta-text">
+                        Comece agora com nossos exercícios interativos e 
+                        melhore suas habilidades em UX Design.
+                    </p>
+                    <a href="exercicios/exercicios.html" class="btn btn-primary btn-large">
+                        Começar Exercícios
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+    ✅ BOA PRÁTICA: Footer com informações organizadas
+    - Links úteis agrupados por categoria
+    - Informações de contato visíveis
+    - Design discreto mas legível
+    -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">UX Shop</h3>
+                    <p class="footer-text">
+                        Projeto educacional para aprender 
+                        boas práticas de UX Design.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="pages/produtos.html">Produtos</a></li>
+                        <li><a href="pages/cadastro.html">Cadastro</a></li>
+                        <li><a href="exercicios/exercicios.html">Exercícios</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Aprendizado</h3>
+                    <ul class="footer-links">
+                        <li><a href="#boas-praticas">Boas Práticas</a></li>
+                        <li><a href="#mas-praticas">Más Práticas</a></li>
+                        <li><a href="#acessibilidade">Acessibilidade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 UX Shop - Projeto Educacional</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

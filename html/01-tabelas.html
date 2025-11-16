@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabelas HTML - Guia Completo</title>
+    <style>
+        /* Estilo base: layout centralizado e tipografia legível */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        
+        /* Tabela: bordas colapsadas para visual limpo e sombra sutil */
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Cabeçalho: destaque visual com fundo azul */
+        /* Cabeçalho: destaque visual com fundo azul */
+        th { 
+            background-color: #3498db; 
+            color: white; 
+            padding: 12px;
+            text-align: left;
+        }
+        
+        /* Células: borda e espaçamento para clareza */
+        td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+        }
+        
+        /* Linhas alternadas: facilita leitura */
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        
+        /* Hover: feedback visual ao passar mouse */
+        tr:hover { background-color: #e8f4f8; }
+        .codigo {
+            background-color: #f4f4f4;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .destaque {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 TABELAS HTML - Guia Definitivo</h1>
+
+    <h2>1. Estrutura Básica de uma Tabela</h2>
+    <div class="destaque">
+        <strong>Tags principais:</strong>
+        <ul>
+            <li><code>&lt;table&gt;</code> - Define a tabela</li>
+            <li><code>&lt;tr&gt;</code> - Table Row (linha)</li>
+            <li><code>&lt;th&gt;</code> - Table Header (cabeçalho)</li>
+            <li><code>&lt;td&gt;</code> - Table Data (célula de dados)</li>
+        </ul>
+    </div>
+
+    <div class="codigo">
+        <pre>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Nome&lt;/th&gt;
+        &lt;th&gt;Idade&lt;/th&gt;
+        &lt;th&gt;Cidade&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;João&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;São Paulo&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</pre>
+    </div>
+
+    <!-- Exemplo prático: estrutura mínima de tabela com cabeçalho e dados -->
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+        </tr>
+        <tr>
+            <td>João</td>
+            <td>25</td>
+            <td>São Paulo</td>
+        </tr>
+        <tr>
+            <td>Maria</td>
+            <td>30</td>
+            <td>Rio de Janeiro</td>
+        </tr>
+        <tr>
+            <td>Pedro</td>
+            <td>28</td>
+            <td>Belo Horizonte</td>
+        </tr>
+    </table>
+
+    <h2>2. Estrutura Semântica (thead, tbody, tfoot)</h2>
+    <div class="destaque">
+        <strong>Melhor organização:</strong>
+        <ul>
+            <li><code>&lt;thead&gt;</code> - Cabeçalho da tabela</li>
+            <li><code>&lt;tbody&gt;</code> - Corpo da tabela</li>
+            <li><code>&lt;tfoot&gt;</code> - Rodapé da tabela</li>
+        </ul>
+    </div>
+
+    <!-- Tabela semântica: separa cabeçalho, corpo e rodapé para melhor acessibilidade -->
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Notebook</td>
+                <td>2</td>
+                <td>R$ 3.000,00</td>
+                <td>R$ 6.000,00</td>
+            </tr>
+            <tr>
+                <td>Mouse</td>
+                <td>5</td>
+                <td>R$ 50,00</td>
+                <td>R$ 250,00</td>
+            </tr>
+            <tr>
+                <td>Teclado</td>
+                <td>3</td>
+                <td>R$ 150,00</td>
+                <td>R$ 450,00</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">Total Geral</th>
+                <th>R$ 6.700,00</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <h2>3. Colspan e Rowspan (Mesclar Células)</h2>
+    <div class="destaque">
+        <strong>Atributos importantes:</strong>
+        <ul>
+            <li><code>colspan</code> - Mescla colunas horizontalmente</li>
+            <li><code>rowspan</code> - Mescla linhas verticalmente</li>
+        </ul>
+    </div>
+
+    <!-- Colspan: célula ocupa múltiplas colunas -->
+    <h3>Exemplo com Colspan:</h3>
+    <table>
+        <tr>
+            <th colspan="3">Informações Pessoais</th>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+        </tr>
+        <tr>
+            <td>Carlos Silva</td>
+            <td>carlos@email.com</td>
+            <td>(11) 98765-4321</td>
+        </tr>
+    </table>
+
+    <!-- Rowspan: célula ocupa múltiplas linhas -->
+    <h3>Exemplo com Rowspan:</h3>
+    <table>
+        <tr>
+            <th rowspan="3">Turma A</th>
+            <td>João</td>
+            <td>9.5</td>
+        </tr>
+        <tr>
+            <td>Maria</td>
+            <td>8.7</td>
+        </tr>
+        <tr>
+            <td>Pedro</td>
+            <td>9.0</td>
+        </tr>
+    </table>
+
+    <!-- Caption: título descritivo da tabela para contexto e acessibilidade -->
+    <h2>4. Caption (Legenda da Tabela)</h2>
+    <table>
+        <caption style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">
+            Vendas do 1º Trimestre de 2025
+        </caption>
+        <tr>
+            <th>Mês</th>
+            <th>Vendas</th>
+            <th>Meta</th>
+        </tr>
+        <tr>
+            <td>Janeiro</td>
+            <td>R$ 50.000</td>
+            <td>R$ 45.000</td>
+        </tr>
+        <tr>
+            <td>Fevereiro</td>
+            <td>R$ 48.000</td>
+            <td>R$ 45.000</td>
+        </tr>
+        <tr>
+            <td>Março</td>
+            <td>R$ 52.000</td>
+            <td>R$ 45.000</td>
+        </tr>
+    </table>
+
+    <!-- Exemplo completo: combina estrutura semântica, caption e layout organizado -->
+    <h2>5. Tabela Complexa - Exemplo Completo</h2>
+    <table>
+        <caption style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">
+            Horário de Aulas - Curso de Programação
+        </caption>
+        <thead>
+            <tr>
+                <th>Horário</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+                <th>Sexta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>08:00 - 10:00</th>
+                <td>HTML/CSS</td>
+                <td>JavaScript</td>
+                <td>HTML/CSS</td>
+                <td>JavaScript</td>
+                <td>Projeto</td>
+            </tr>
+            <tr>
+                <th>10:00 - 12:00</th>
+                <td>JavaScript</td>
+                <td>React</td>
+                <td>JavaScript</td>
+                <td>React</td>
+                <td>Projeto</td>
+            </tr>
+            <tr>
+                <th>14:00 - 16:00</th>
+                <td colspan="2">Node.js</td>
+                <td colspan="2">Banco de Dados</td>
+                <td>Revisão</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>6. Atributos Importantes de Tabelas</h2>
+    <div class="destaque">
+        <ul>
+            <li><code>border</code> - Define borda (obsoleto, use CSS)</li>
+            <li><code>cellpadding</code> - Espaçamento interno (obsoleto, use CSS padding)</li>
+            <li><code>cellspacing</code> - Espaçamento entre células (obsoleto, use CSS border-spacing)</li>
+            <li><code>width</code> - Largura da tabela (preferível usar CSS)</li>
+            <li><code>align</code> - Alinhamento (obsoleto, use CSS text-align)</li>
+        </ul>
+        <p><strong>Nota:</strong> Muitos atributos HTML de tabelas estão obsoletos. Use CSS para estilização!</p>
+    </div>
+
+    <h2>7. Tabela Responsiva (com CSS)</h2>
+    <div style="overflow-x: auto;">
+        <table style="min-width: 600px;">
+            <tr>
+                <th>ID</th>
+                <th>Nome Completo</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>001</td>
+                <td>Ana Paula Santos</td>
+                <td>ana@email.com</td>
+                <td>(11) 91234-5678</td>
+                <td>Rua das Flores, 123</td>
+                <td>Ativo</td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>Bruno Costa</td>
+                <td>bruno@email.com</td>
+                <td>(21) 98765-4321</td>
+                <td>Av. Principal, 456</td>
+                <td>Ativo</td>
+            </tr>
+        </table>
+    </div>
+    <p style="color: #666; font-style: italic;">
+        💡 Dica: Em telas pequenas, a tabela terá rolagem horizontal.
+    </p>
+
+    <h2>📝 Resumo - Boas Práticas</h2>
+    <div class="destaque">
+        <ol>
+            <li>Use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> e <code>&lt;tfoot&gt;</code> para melhor semântica</li>
+            <li>Use <code>&lt;th&gt;</code> para cabeçalhos, não <code>&lt;td&gt;</code></li>
+            <li>Adicione <code>&lt;caption&gt;</code> para descrever a tabela</li>
+            <li>Use CSS para estilização, evite atributos HTML obsoletos</li>
+            <li>Torne tabelas responsivas com <code>overflow-x: auto</code></li>
+            <li>Use <code>colspan</code> e <code>rowspan</code> quando necessário</li>
+            <li>Considere acessibilidade: use scope em <code>&lt;th&gt;</code></li>
+        </ol>
+    </div>
+
+</body>
+</html>

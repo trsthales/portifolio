@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - UX Shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Estilos específicos para página de produtos */
+        
+        .products-page {
+            padding: var(--spacing-xl) 0;
+        }
+
+        /* 
+        ✅ BOA PRÁTICA: Layout com sidebar de filtros
+        - Filtros visíveis e acessíveis
+        - Responsivo: filtros colapsam em mobile
+        */
+        .products-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Sidebar de filtros */
+        .filters-sidebar {
+            background: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .filters-title {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-clear {
+            color: var(--primary-color);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: var(--spacing-xs);
+        }
+
+        .filter-clear:hover {
+            text-decoration: underline;
+        }
+
+        .filter-group {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-group:last-child {
+            border-bottom: none;
+        }
+
+        .filter-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-xs) 0;
+            cursor: pointer;
+        }
+
+        .filter-option input {
+            cursor: pointer;
+        }
+
+        /* Área de produtos */
+        .products-content {
+            min-height: 400px;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .products-count {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        /* 
+        ✅ BOA PRÁTICA: Select de ordenação claro
+        */
+        .sort-select {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            background: var(--bg-primary);
+            min-height: 40px;
+        }
+
+        /* Cards de produtos aprimorados */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 150px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .product-emoji {
+            font-size: 4rem;
+        }
+
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            font-size: var(--font-size-xs);
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .product-name {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .product-description {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .product-price {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .product-stock {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+        }
+
+        .product-stock.low-stock {
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+        }
+
+        /* 
+        ✅ BOA PRÁTICA: Empty state quando não há produtos
+        */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .empty-state-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .empty-state-text {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Mobile: filtros colapsáveis */
+        @media (max-width: 768px) {
+            .products-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                position: static;
+            }
+
+            .filters-toggle {
+                display: block;
+                width: 100%;
+                margin-bottom: var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo" aria-label="Página inicial">
+                    <span class="logo-icon">🛍️</span>
+                    <span class="logo-text">UX Shop</span>
+                </a>
+
+                <form class="search-form" role="search" id="search-form">
+                    <input 
+                        type="search" 
+                        class="search-input" 
+                        id="search-input"
+                        placeholder="Buscar produtos..."
+                        aria-label="Buscar produtos"
+                    >
+                    <button type="submit" class="search-button" aria-label="Realizar busca">
+                        🔍
+                    </button>
+                </form>
+
+                <nav class="main-nav" aria-label="Navegação principal">
+                    <a href="produtos.html" class="nav-link" aria-current="page">
+                        <span class="nav-icon">📦</span>
+                        <span>Produtos</span>
+                    </a>
+                    <a href="carrinho.html" class="nav-link">
+                        <span class="nav-icon">🛒</span>
+                        <span>Carrinho</span>
+                        <span class="badge" id="cart-count">0</span>
+                    </a>
+                    <a href="cadastro.html" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Minha Conta</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="products-page">
+        <div class="container">
+            <h1 class="section-title">Nossos Produtos</h1>
+
+            <div class="products-layout">
+                <!-- 
+                ✅ BOA PRÁTICA: Filtros sidebar
+                - Permite refinamento da busca
+                - Sticky para fácil acesso
+                - Opção de limpar todos os filtros
+                -->
+                <aside class="filters-sidebar" role="complementary" aria-label="Filtros de produtos">
+                    <div class="filters-title">
+                        <span>Filtros</span>
+                        <button class="filter-clear" onclick="clearFilters()">
+                            Limpar
+                        </button>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Categoria</span>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="Eletrônicos" onchange="applyFilters()">
+                            <span>Eletrônicos</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="Acessórios" onchange="applyFilters()">
+                            <span>Acessórios</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="Fotografia" onchange="applyFilters()">
+                            <span>Fotografia</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Faixa de Preço</span>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="0-500" onchange="applyFilters()">
+                            <span>Até R$ 500</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="500-1500" onchange="applyFilters()">
+                            <span>R$ 500 - R$ 1.500</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="1500-3000" onchange="applyFilters()">
+                            <span>R$ 1.500 - R$ 3.000</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="3000-999999" onchange="applyFilters()">
+                            <span>Acima de R$ 3.000</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Disponibilidade</span>
+                        <label class="filter-option">
+                            <input type="checkbox" name="availability" value="in-stock" onchange="applyFilters()">
+                            <span>Em estoque</span>
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Área principal de produtos -->
+                <div class="products-content">
+                    <div class="products-header">
+                        <span class="products-count" id="products-count">
+                            Carregando produtos...
+                        </span>
+                        
+                        <!-- 
+                        ✅ BOA PRÁTICA: Opções de ordenação claras
+                        -->
+                        <select class="sort-select" id="sort-select" onchange="applySorting()" aria-label="Ordenar produtos">
+                            <option value="relevance">Mais relevantes</option>
+                            <option value="price-asc">Menor preço</option>
+                            <option value="price-desc">Maior preço</option>
+                            <option value="name-asc">Nome A-Z</option>
+                            <option value="name-desc">Nome Z-A</option>
+                        </select>
+                    </div>
+
+                    <div class="products-grid" id="products-container">
+                        <!-- Produtos serão renderizados aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 UX Shop - Projeto Educacional</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Estado de filtros
+        let currentFilters = {
+            categories: [],
+            priceRange: null,
+            inStockOnly: false,
+            searchQuery: ''
+        };
+
+        let currentSort = 'relevance';
+        let allProducts = [...PRODUCTS];
+
+        // ✅ BOA PRÁTICA: Renderizar produtos ao carregar página
+        function loadProducts() {
+            const filtered = filterProducts();
+            const sorted = sortProducts(filtered);
+            renderProductsPage(sorted);
+            updateProductCount(sorted.length);
+        }
+
+        // ✅ BOA PRÁTICA: Filtrar produtos baseado em critérios
+        function filterProducts() {
+            return allProducts.filter(product => {
+                // Filtro de categoria
+                if (currentFilters.categories.length > 0) {
+                    if (!currentFilters.categories.includes(product.category)) {
+                        return false;
+                    }
+                }
+
+                // Filtro de preço
+                if (currentFilters.priceRange) {
+                    const [min, max] = currentFilters.priceRange.split('-').map(Number);
+                    if (product.price < min || product.price > max) {
+                        return false;
+                    }
+                }
+
+                // Filtro de disponibilidade
+                if (currentFilters.inStockOnly && product.stock === 0) {
+                    return false;
+                }
+
+                // Filtro de busca
+                if (currentFilters.searchQuery) {
+                    const query = currentFilters.searchQuery.toLowerCase();
+                    const searchableText = `${product.name} ${product.description} ${product.category}`.toLowerCase();
+                    if (!searchableText.includes(query)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+        }
+
+        // ✅ BOA PRÁTICA: Ordenar produtos
+        function sortProducts(products) {
+            const sorted = [...products];
+
+            switch (currentSort) {
+                case 'price-asc':
+                    return sorted.sort((a, b) => a.price - b.price);
+                case 'price-desc':
+                    return sorted.sort((a, b) => b.price - a.price);
+                case 'name-asc':
+                    return sorted.sort((a, b) => a.name.localeCompare(b.name));
+                case 'name-desc':
+                    return sorted.sort((a, b) => b.name.localeCompare(a.name));
+                default:
+                    return sorted;
+            }
+        }
+
+        // Renderizar produtos
+        function renderProductsPage(products) {
+            const container = document.getElementById('products-container');
+            
+            if (products.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <h2 class="empty-state-title">Nenhum produto encontrado</h2>
+                        <p class="empty-state-text">
+                            Tente ajustar os filtros ou fazer uma nova busca
+                        </p>
+                        <button class="btn btn-primary" onclick="clearFilters()">
+                            Limpar Filtros
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+            
+            products.forEach(product => {
+                const card = createProductCard(product);
+                fragment.appendChild(card);
+            });
+            
+            container.appendChild(fragment);
+        }
+
+        // Atualizar contador de produtos
+        function updateProductCount(count) {
+            const countEl = document.getElementById('products-count');
+            countEl.textContent = count === 1 
+                ? '1 produto encontrado' 
+                : `${count} produtos encontrados`;
+        }
+
+        // Aplicar filtros
+        function applyFilters() {
+            // Coletar categorias selecionadas
+            const categoryInputs = document.querySelectorAll('input[name="category"]:checked');
+            currentFilters.categories = Array.from(categoryInputs).map(input => input.value);
+
+            // Coletar faixa de preço
+            const priceInput = document.querySelector('input[name="price"]:checked');
+            currentFilters.priceRange = priceInput ? priceInput.value : null;
+
+            // Disponibilidade
+            const availabilityInput = document.querySelector('input[name="availability"]:checked');
+            currentFilters.inStockOnly = !!availabilityInput;
+
+            loadProducts();
+        }
+
+        // Aplicar ordenação
+        function applySorting() {
+            const sortSelect = document.getElementById('sort-select');
+            currentSort = sortSelect.value;
+            loadProducts();
+        }
+
+        // Limpar todos os filtros
+        function clearFilters() {
+            // Desmarcar todos os checkboxes e radios
+            document.querySelectorAll('.filters-sidebar input').forEach(input => {
+                input.checked = false;
+            });
+
+            // Resetar filtros
+            currentFilters = {
+                categories: [],
+                priceRange: null,
+                inStockOnly: false,
+                searchQuery: ''
+            };
+
+            // Limpar busca
+            document.getElementById('search-input').value = '';
+
+            loadProducts();
+            appState.showNotification('Filtros limpos', 'info');
+        }
+
+        // ✅ BOA PRÁTICA: Busca em tempo real com debounce
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', debounce((e) => {
+            currentFilters.searchQuery = e.target.value.trim();
+            loadProducts();
+        }, 300));
+
+        // Prevenir submit do form de busca
+        document.getElementById('search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+
+        // Carregar produtos ao iniciar
+        loadProducts();
+    </script>
+</body>
+</html>

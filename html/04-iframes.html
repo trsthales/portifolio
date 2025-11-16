@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFrames HTML - Guia Completo</title>
+    <style>
+        /* Estilo base: layout centralizado e tipografia legível */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #16a085; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        h3 { color: #7f8c8d; }
+        .codigo {
+            background-color: #f4f4f4;
+            border-left: 4px solid #16a085;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .destaque {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .exemplo {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .alerta {
+            background-color: #ffebee;
+            padding: 15px;
+            border-left: 4px solid #e74c3c;
+            margin: 15px 0;
+        }
+        iframe {
+            border: 2px solid #95a5a6;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        /* Container responsivo: mantém proporção 16:9 em qualquer tela */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            margin: 20px 0;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th {
+            background-color: #16a085;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>🖼️ iFrames HTML - Guia Definitivo</h1>
+
+    <h2>1. O que é um iFrame?</h2>
+    <div class="destaque">
+        <strong>iFrame (Inline Frame)</strong> é um elemento HTML que permite incorporar outro documento HTML dentro da página atual.
+        <ul>
+            <li>Tag: <code>&lt;iframe&gt;</code></li>
+            <li>Cria uma janela independente dentro da página</li>
+            <li>Pode carregar conteúdo de qualquer URL</li>
+            <li>Útil para incorporar vídeos, mapas, widgets, etc.</li>
+        </ul>
+    </div>
+
+    <h2>2. Sintaxe Básica</h2>
+    <div class="codigo">
+        <pre>&lt;iframe src="URL_DO_CONTEUDO"&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <!-- Iframe simples: incorpora conteúdo externo na página atual -->
+    <h3>Exemplo Simples:</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    src="https://www.example.com" 
+    width="600" 
+    height="400"
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <iframe src="https://www.wikipedia.org" width="100%" height="300"></iframe>
+        <p><em>Exemplo: Wikipedia incorporada na página</em></p>
+    </div>
+
+    <h2>3. Atributos Principais do iFrame</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Exemplo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>src</code></td>
+                <td>URL do documento a ser incorporado</td>
+                <td><code>src="https://exemplo.com"</code></td>
+            </tr>
+            <tr>
+                <td><code>width</code></td>
+                <td>Largura do iframe (px ou %)</td>
+                <td><code>width="600"</code> ou <code>width="100%"</code></td>
+            </tr>
+            <tr>
+                <td><code>height</code></td>
+                <td>Altura do iframe (px)</td>
+                <td><code>height="400"</code></td>
+            </tr>
+            <tr>
+                <td><code>name</code></td>
+                <td>Nome do iframe (para targeting)</td>
+                <td><code>name="meu-iframe"</code></td>
+            </tr>
+            <tr>
+                <td><code>title</code></td>
+                <td>Título descritivo (acessibilidade)</td>
+                <td><code>title="Vídeo do YouTube"</code></td>
+            </tr>
+            <tr>
+                <td><code>frameborder</code></td>
+                <td>Borda (obsoleto, use CSS)</td>
+                <td><code>frameborder="0"</code></td>
+            </tr>
+            <tr>
+                <td><code>scrolling</code></td>
+                <td>Controla barras de rolagem (obsoleto)</td>
+                <td><code>scrolling="no"</code></td>
+            </tr>
+            <tr>
+                <td><code>sandbox</code></td>
+                <td>Restrições de segurança</td>
+                <td><code>sandbox="allow-scripts"</code></td>
+            </tr>
+            <tr>
+                <td><code>allow</code></td>
+                <td>Permissões de recursos</td>
+                <td><code>allow="fullscreen"</code></td>
+            </tr>
+            <tr>
+                <td><code>loading</code></td>
+                <td>Carregamento lazy ou eager</td>
+                <td><code>loading="lazy"</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Exemplos Práticos</h2>
+
+    <h3>4.1. YouTube Video</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/VIDEO_ID" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <iframe 
+            width="100%" 
+            height="315" 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <h3>4.2. Google Maps</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!..." 
+    width="600" 
+    height="450" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy"
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0660480676983!2d-46.65462368502207!3d-23.56128798468009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1234567890" 
+            width="100%" 
+            height="300" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <h3>4.3. Página HTML Local</h3>
+    <div class="codigo">
+        <pre>&lt;!-- arquivo: index.html --&gt;
+&lt;iframe src="pagina2.html" width="100%" height="300"&gt;&lt;/iframe&gt;
+
+&lt;!-- arquivo: pagina2.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h1&gt;Conteúdo do iFrame&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <h3>4.4. iFrame Responsivo (16:9)</h3>
+    <div class="codigo">
+        <pre>&lt;div class="iframe-container"&gt;
+    &lt;iframe src="..."&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+}
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+&lt;/style&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <div class="iframe-container">
+            <iframe 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <h2>5. Atributo SANDBOX (Segurança)</h2>
+    <div class="destaque">
+        O atributo <code>sandbox</code> aplica restrições de segurança ao conteúdo do iframe.
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Valor</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>sandbox</code></td>
+                <td>Aplica todas as restrições</td>
+            </tr>
+            <tr>
+                <td><code>allow-forms</code></td>
+                <td>Permite envio de formulários</td>
+            </tr>
+            <tr>
+                <td><code>allow-scripts</code></td>
+                <td>Permite execução de scripts</td>
+            </tr>
+            <tr>
+                <td><code>allow-same-origin</code></td>
+                <td>Permite acesso ao DOM pai se mesma origem</td>
+            </tr>
+            <tr>
+                <td><code>allow-popups</code></td>
+                <td>Permite pop-ups</td>
+            </tr>
+            <tr>
+                <td><code>allow-top-navigation</code></td>
+                <td>Permite navegação no frame principal</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Exemplo com Sandbox:</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    src="pagina.html" 
+    sandbox="allow-scripts allow-forms"
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <h2>6. Atributo LOADING (Performance)</h2>
+    <div class="codigo">
+        <pre>&lt;!-- Carregamento lento (lazy loading) --&gt;
+&lt;iframe src="..." loading="lazy"&gt;&lt;/iframe&gt;
+
+&lt;!-- Carregamento imediato --&gt;
+&lt;iframe src="..." loading="eager"&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <div class="destaque">
+        <strong>lazy</strong> - Carrega o iframe apenas quando estiver próximo de aparecer na tela (economiza dados e melhora performance)
+        <br>
+        <strong>eager</strong> - Carrega imediatamente (padrão)
+    </div>
+
+    <h2>7. Atributo NAME e Targeting</h2>
+    <div class="codigo">
+        <pre>&lt;!-- Link que abre no iframe --&gt;
+&lt;a href="https://www.example.com" target="meu-frame"&gt;
+    Clique aqui
+&lt;/a&gt;
+
+&lt;!-- iFrame com nome --&gt;
+&lt;iframe name="meu-frame" width="600" height="400"&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <p>
+            <a href="https://www.wikipedia.org" target="frame-exemplo" 
+               style="background: #3498db; color: white; padding: 10px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 5px;">
+                Carregar Wikipedia
+            </a>
+            <a href="https://github.com" target="frame-exemplo"
+               style="background: #2ecc71; color: white; padding: 10px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 5px;">
+                Carregar GitHub
+            </a>
+        </p>
+        <iframe name="frame-exemplo" width="100%" height="300"></iframe>
+    </div>
+
+    <h2>8. srcdoc - HTML Inline</h2>
+    <div class="codigo">
+        <pre>&lt;iframe srcdoc="&lt;h1&gt;Olá do iFrame!&lt;/h1&gt;&lt;p&gt;Conteúdo inline&lt;/p&gt;"&gt;
+&lt;/iframe&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <iframe 
+            srcdoc="<h1 style='color: #3498db;'>Olá do iFrame!</h1><p>Este conteúdo está dentro do atributo srcdoc</p>" 
+            width="100%" 
+            height="150">
+        </iframe>
+    </div>
+
+    <h2>9. Incorporando Diferentes Serviços</h2>
+
+    <h3>9.1. Google Forms</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    src="https://docs.google.com/forms/d/e/.../viewform?embedded=true" 
+    width="640" 
+    height="800"
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <h3>9.2. Google Drive (PDF, Documentos)</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    src="https://drive.google.com/file/d/FILE_ID/preview" 
+    width="640" 
+    height="480"
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <h3>9.3. CodePen</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    height="300" 
+    style="width: 100%;" 
+    src="https://codepen.io/username/embed/PEN_ID?default-tab=html,result"
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <h3>9.4. Twitter Timeline</h3>
+    <div class="codigo">
+        <pre>&lt;iframe 
+    src="https://platform.twitter.com/widgets/..." 
+    width="400" 
+    height="600"
+&gt;&lt;/iframe&gt;</pre>
+    </div>
+
+    <h2>10. Segurança e Considerações</h2>
+
+    <div class="alerta">
+        <h3>⚠️ Problemas de Segurança:</h3>
+        <ul>
+            <li><strong>Clickjacking:</strong> Sobreposição de iframes invisíveis</li>
+            <li><strong>XSS:</strong> Cross-Site Scripting através de iframes</li>
+            <li><strong>Phishing:</strong> iframes podem exibir sites maliciosos</li>
+        </ul>
+
+        <h3>🛡️ Boas Práticas de Segurança:</h3>
+        <ol>
+            <li>Use <code>sandbox</code> para restringir permissões</li>
+            <li>Configure CSP (Content Security Policy) no servidor</li>
+            <li>Use HTTPS sempre que possível</li>
+            <li>Valide a origem do conteúdo</li>
+            <li>Evite carregar conteúdo de fontes não confiáveis</li>
+        </ol>
+    </div>
+
+    <h2>11. X-Frame-Options</h2>
+    <div class="destaque">
+        Alguns sites bloqueiam ser incorporados em iframes usando o header <code>X-Frame-Options</code>:
+        <ul>
+            <li><code>DENY</code> - Não permite iframes</li>
+            <li><code>SAMEORIGIN</code> - Permite apenas da mesma origem</li>
+            <li><code>ALLOW-FROM uri</code> - Permite de URI específica</li>
+        </ul>
+    </div>
+
+    <h2>12. Comunicação entre Frames (postMessage)</h2>
+    <div class="codigo">
+        <pre>&lt;!-- Página principal --&gt;
+&lt;script&gt;
+// Enviar mensagem para o iframe
+const iframe = document.getElementById('meu-iframe');
+iframe.contentWindow.postMessage('Olá iframe!', '*');
+
+// Receber mensagem do iframe
+window.addEventListener('message', (event) => {
+    console.log('Mensagem recebida:', event.data);
+});
+&lt;/script&gt;
+
+&lt;!-- Dentro do iframe --&gt;
+&lt;script&gt;
+// Receber mensagem
+window.addEventListener('message', (event) => {
+    console.log('Mensagem recebida:', event.data);
+    // Responder
+    event.source.postMessage('Olá página principal!', event.origin);
+});
+&lt;/script&gt;</pre>
+    </div>
+
+    <h2>13. CSS para iFrames</h2>
+    <div class="codigo">
+        <pre>/* Remover borda */
+iframe {
+    border: none;
+}
+
+/* iFrame responsivo */
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Efeitos */
+iframe {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+iframe:hover {
+    transform: scale(1.02);
+}</pre>
+    </div>
+
+    <h2>14. Alternativas aos iFrames</h2>
+    <div class="destaque">
+        <h3>Quando NÃO usar iFrames:</h3>
+        <ul>
+            <li>Para layout de página (use div, section, etc.)</li>
+            <li>Para carregar partes da sua própria aplicação (use AJAX/fetch)</li>
+            <li>Quando precisar de SEO (conteúdo em iframes não é bem indexado)</li>
+        </ul>
+
+        <h3>Alternativas:</h3>
+        <ul>
+            <li><strong>AJAX/Fetch:</strong> Para carregar conteúdo dinamicamente</li>
+            <li><strong>Web Components:</strong> Para componentes reutilizáveis</li>
+            <li><strong>Shadow DOM:</strong> Para encapsulamento de estilos</li>
+            <li><strong>Object/Embed:</strong> Para PDFs e mídia</li>
+        </ul>
+    </div>
+
+    <h2>📝 Resumo - Boas Práticas</h2>
+    <div class="destaque">
+        <ol>
+            <li>Sempre adicione atributo <code>title</code> para acessibilidade</li>
+            <li>Use <code>loading="lazy"</code> para melhor performance</li>
+            <li>Implemente <code>sandbox</code> para segurança</li>
+            <li>Torne iframes responsivos com técnicas CSS</li>
+            <li>Evite usar atributos obsoletos (<code>frameborder</code>, <code>scrolling</code>)</li>
+            <li>Use HTTPS para <code>src</code> sempre que possível</li>
+            <li>Considere alternativas quando apropriado</li>
+            <li>Teste a compatibilidade com diferentes navegadores</li>
+            <li>Verifique se o site permite incorporação (X-Frame-Options)</li>
+            <li>Otimize o tamanho e carregamento dos iframes</li>
+        </ol>
+    </div>
+
+    <h2>15. Checklist de Implementação</h2>
+    <div class="exemplo">
+        <h3>✅ Antes de usar um iFrame:</h3>
+        <ul>
+            <li>☐ O site permite incorporação?</li>
+            <li>☐ Adicionei atributo <code>title</code>?</li>
+            <li>☐ Configurei <code>sandbox</code> se necessário?</li>
+            <li>☐ O iframe é responsivo?</li>
+            <li>☐ Usei <code>loading="lazy"</code> quando apropriado?</li>
+            <li>☐ Testei em diferentes dispositivos?</li>
+            <li>☐ Verifiquei a performance da página?</li>
+            <li>☐ Considerei alternativas?</li>
+        </ul>
+    </div>
+
+</body>
+</html>

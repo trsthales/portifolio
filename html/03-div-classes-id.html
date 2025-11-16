@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIV, Classes e ID - Guia Completo</title>
+    <style>
+        /* Estilo base: layout centralizado e tipografia legível */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #9b59b6; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        h3 { color: #7f8c8d; }
+        .codigo {
+            background-color: #f4f4f4;
+            border-left: 4px solid #9b59b6;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .destaque {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .exemplo {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        /* Exemplos práticos de DIV: containers para agrupamento visual */
+        .container {
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin: 15px 0;
+            background-color: #ecf0f1;
+        }
+        
+        .caixa {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        /* Classes: estilos reutilizáveis aplicáveis a múltiplos elementos */
+        .botao {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        
+        .botao-vermelho {
+            background-color: #e74c3c;
+        }
+        
+        .botao-azul {
+            background-color: #3498db;
+        }
+        
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .card-destaque {
+            border-color: #f39c12;
+            background-color: #fef5e7;
+        }
+        
+        .texto-grande {
+            font-size: 20px;
+        }
+        
+        .texto-vermelho {
+            color: #e74c3c;
+        }
+        
+        .texto-centralizado {
+            text-align: center;
+        }
+        
+        .negrito {
+            font-weight: bold;
+        }
+        
+        /* IDs: identificadores únicos para elementos específicos da página */
+        #cabecalho {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        #rodape {
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+        
+        #menu-principal {
+            background-color: #3498db;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        #conteudo-principal {
+            background-color: #ecf0f1;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        /* Grid layout: exemplo de layout moderno com CSS Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .grid-item {
+            background-color: #9b59b6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .diferenca-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .diferenca-table th {
+            background-color: #9b59b6;
+            color: white;
+            padding: 12px;
+        }
+        .diferenca-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .diferenca-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>📦 DIV, Classes e ID - Guia Definitivo</h1>
+
+    <!-- ============================================ -->
+    <!-- PARTE 1: DIV -->
+    <!-- ============================================ -->
+    
+    <h2>1. O que é DIV?</h2>
+    <div class="destaque">
+        <strong>DIV (Division)</strong> é um container genérico para agrupar conteúdo.
+        <ul>
+            <li>Tag: <code>&lt;div&gt;</code></li>
+            <li>Elemento de bloco (ocupa toda a largura disponível)</li>
+            <li>Não tem significado semântico específico</li>
+            <li>Usado para organizar e estruturar o layout</li>
+            <li>Essencial para aplicar CSS e criar layouts</li>
+        </ul>
+    </div>
+
+    <h3>1.1. DIV Básica</h3>
+    <div class="codigo">
+        <pre>&lt;div&gt;
+    Este é um conteúdo dentro de uma div
+&lt;/div&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <div style="background-color: #ecf0f1; padding: 15px; border: 2px solid #95a5a6;">
+            Este é um conteúdo dentro de uma div
+        </div>
+    </div>
+
+    <h3>1.2. DIVs Aninhadas</h3>
+    <div class="codigo">
+        <pre>&lt;div class="container"&gt;
+    &lt;div class="caixa"&gt;Caixa 1&lt;/div&gt;
+    &lt;div class="caixa"&gt;Caixa 2&lt;/div&gt;
+    &lt;div class="caixa"&gt;Caixa 3&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <div class="container">
+            <div class="caixa">Caixa 1</div>
+            <div class="caixa">Caixa 2</div>
+            <div class="caixa">Caixa 3</div>
+        </div>
+    </div>
+
+    <h3>1.3. DIV para Layout (Grid)</h3>
+    <div class="exemplo">
+        <div class="grid-container">
+            <div class="grid-item">Item 1</div>
+            <div class="grid-item">Item 2</div>
+            <div class="grid-item">Item 3</div>
+            <div class="grid-item">Item 4</div>
+            <div class="grid-item">Item 5</div>
+            <div class="grid-item">Item 6</div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PARTE 2: CLASSES -->
+    <!-- ============================================ -->
+    
+    <h2>2. O que são Classes?</h2>
+    <div class="destaque">
+        <strong>Classes</strong> são identificadores reutilizáveis para aplicar estilos.
+        <ul>
+            <li>Atributo: <code>class="nome-da-classe"</code></li>
+            <li>Podem ser usadas em MÚLTIPLOS elementos</li>
+            <li>Um elemento pode ter MÚLTIPLAS classes</li>
+            <li>No CSS, selecionamos com <code>.nome-da-classe</code></li>
+            <li>Case-sensitive (diferencia maiúsculas de minúsculas)</li>
+        </ul>
+    </div>
+
+    <h3>2.1. Classe Simples</h3>
+    <div class="codigo">
+        <pre>&lt;p class="texto-vermelho"&gt;Este texto é vermelho&lt;/p&gt;
+
+&lt;style&gt;
+.texto-vermelho {
+    color: red;
+}
+&lt;/style&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <p class="texto-vermelho">Este texto é vermelho</p>
+        <p>Este texto é normal</p>
+    </div>
+
+    <h3>2.2. Múltiplas Classes no Mesmo Elemento</h3>
+    <div class="codigo">
+        <pre>&lt;p class="texto-grande texto-vermelho texto-centralizado negrito"&gt;
+    Texto com múltiplas classes
+&lt;/p&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <p class="texto-grande texto-vermelho texto-centralizado negrito">
+            Texto com múltiplas classes
+        </p>
+    </div>
+
+    <h3>2.3. Mesma Classe em Múltiplos Elementos</h3>
+    <div class="codigo">
+        <pre>&lt;button class="botao"&gt;Botão Verde&lt;/button&gt;
+&lt;button class="botao botao-vermelho"&gt;Botão Vermelho&lt;/button&gt;
+&lt;button class="botao botao-azul"&gt;Botão Azul&lt;/button&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <button class="botao">Botão Verde</button>
+        <button class="botao botao-vermelho">Botão Vermelho</button>
+        <button class="botao botao-azul">Botão Azul</button>
+    </div>
+
+    <h3>2.4. Classes para Cards</h3>
+    <div class="exemplo">
+        <div class="card">
+            <h4>Card Normal</h4>
+            <p>Este é um card com estilo padrão.</p>
+        </div>
+
+        <div class="card card-destaque">
+            <h4>Card em Destaque</h4>
+            <p>Este card tem destaque especial com duas classes.</p>
+        </div>
+
+        <div class="card">
+            <h4>Outro Card Normal</h4>
+            <p>Mais um card com o estilo padrão.</p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PARTE 3: ID -->
+    <!-- ============================================ -->
+    
+    <h2>3. O que são IDs?</h2>
+    <div class="destaque">
+        <strong>IDs</strong> são identificadores únicos para elementos.
+        <ul>
+            <li>Atributo: <code>id="nome-do-id"</code></li>
+            <li>Deve ser ÚNICO na página (não repetir)</li>
+            <li>No CSS, selecionamos com <code>#nome-do-id</code></li>
+            <li>Usado para JavaScript e âncoras de navegação</li>
+            <li>Maior especificidade no CSS que classes</li>
+        </ul>
+    </div>
+
+    <h3>3.1. Exemplo Básico de ID</h3>
+    <div class="codigo">
+        <pre>&lt;div id="cabecalho"&gt;
+    &lt;h1&gt;Meu Site&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+#cabecalho {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+&lt;/style&gt;</pre>
+    </div>
+
+    <div class="exemplo">
+        <div id="cabecalho">
+            <h1>Meu Site</h1>
+        </div>
+    </div>
+
+    <h3>3.2. Estrutura Completa com IDs</h3>
+    <div class="exemplo">
+        <div id="menu-principal">
+            <strong>Menu de Navegação</strong>
+        </div>
+
+        <div id="conteudo-principal">
+            <h3>Conteúdo Principal</h3>
+            <p>Este é o conteúdo principal da página.</p>
+        </div>
+
+        <div id="rodape">
+            <p>&copy; 2025 - Todos os direitos reservados</p>
+        </div>
+    </div>
+
+    <h3>3.3. IDs como Âncoras</h3>
+    <div class="codigo">
+        <pre>&lt;a href="#secao1"&gt;Ir para Seção 1&lt;/a&gt;
+&lt;a href="#secao2"&gt;Ir para Seção 2&lt;/a&gt;
+
+&lt;div id="secao1"&gt;
+    &lt;h2&gt;Seção 1&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;div id="secao2"&gt;
+    &lt;h2&gt;Seção 2&lt;/h2&gt;
+&lt;/div&gt;</pre>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PARTE 4: DIFERENÇAS ENTRE CLASS E ID -->
+    <!-- ============================================ -->
+    
+    <h2>4. Diferenças entre Class e ID</h2>
+    
+    <table class="diferenca-table">
+        <thead>
+            <tr>
+                <th>Característica</th>
+                <th>CLASS</th>
+                <th>ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Unicidade</strong></td>
+                <td>Pode ser usada em múltiplos elementos</td>
+                <td>Deve ser única na página</td>
+            </tr>
+            <tr>
+                <td><strong>Seletor CSS</strong></td>
+                <td><code>.nome-classe</code></td>
+                <td><code>#nome-id</code></td>
+            </tr>
+            <tr>
+                <td><strong>Especificidade</strong></td>
+                <td>Menor (10 pontos)</td>
+                <td>Maior (100 pontos)</td>
+            </tr>
+            <tr>
+                <td><strong>Múltiplos por elemento</strong></td>
+                <td>✅ Sim - pode ter várias classes</td>
+                <td>❌ Não - apenas um ID</td>
+            </tr>
+            <tr>
+                <td><strong>Uso JavaScript</strong></td>
+                <td><code>getElementsByClassName()</code></td>
+                <td><code>getElementById()</code></td>
+            </tr>
+            <tr>
+                <td><strong>Âncoras</strong></td>
+                <td>❌ Não funciona</td>
+                <td>✅ Sim - <code>&lt;a href="#id"&gt;</code></td>
+            </tr>
+            <tr>
+                <td><strong>Quando usar</strong></td>
+                <td>Estilos reutilizáveis</td>
+                <td>Elementos únicos, JavaScript</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ============================================ -->
+    <!-- PARTE 5: EXEMPLOS PRÁTICOS -->
+    <!-- ============================================ -->
+    
+    <h2>5. Exemplos Práticos Completos</h2>
+
+    <h3>5.1. Layout de Página Completo</h3>
+    <div class="codigo">
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;div id="pagina"&gt;
+        &lt;header id="topo"&gt;
+            &lt;nav class="menu"&gt;
+                &lt;ul class="lista-menu"&gt;
+                    &lt;li class="item-menu"&gt;Home&lt;/li&gt;
+                    &lt;li class="item-menu"&gt;Sobre&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+        &lt;/header&gt;
+        
+        &lt;main id="conteudo"&gt;
+            &lt;section class="secao"&gt;
+                &lt;h2&gt;Seção 1&lt;/h2&gt;
+            &lt;/section&gt;
+        &lt;/main&gt;
+        
+        &lt;footer id="rodape"&gt;
+            &lt;p class="texto-rodape"&gt;&copy; 2025&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <h3>5.2. Sistema de Grid com Classes</h3>
+    <div class="exemplo">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+            <div style="background: #3498db; padding: 20px; color: white; text-align: center;">Col 1</div>
+            <div style="background: #2ecc71; padding: 20px; color: white; text-align: center;">Col 2</div>
+            <div style="background: #e74c3c; padding: 20px; color: white; text-align: center;">Col 3</div>
+            <div style="background: #f39c12; padding: 20px; color: white; text-align: center;">Col 4</div>
+        </div>
+    </div>
+
+    <h3>5.3. Cards com Classes e IDs</h3>
+    <div class="codigo">
+        <pre>&lt;div id="galeria-produtos"&gt;
+    &lt;div class="card produto"&gt;
+        &lt;h3 class="titulo-produto"&gt;Produto 1&lt;/h3&gt;
+        &lt;p class="preco"&gt;R$ 99,90&lt;/p&gt;
+        &lt;button class="botao botao-comprar"&gt;Comprar&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PARTE 6: BOAS PRÁTICAS -->
+    <!-- ============================================ -->
+    
+    <h2>6. Boas Práticas e Convenções</h2>
+    
+    <div class="destaque">
+        <h3>✅ Faça:</h3>
+        <ul>
+            <li>Use <strong>classes</strong> para estilos reutilizáveis</li>
+            <li>Use <strong>IDs</strong> para elementos únicos e JavaScript</li>
+            <li>Use nomes descritivos: <code>botao-primario</code>, não <code>bp</code></li>
+            <li>Use kebab-case: <code>meu-botao</code></li>
+            <li>Agrupe classes relacionadas: <code>card card-destaque</code></li>
+            <li>Mantenha IDs únicos em toda a página</li>
+        </ul>
+
+        <h3>❌ Não Faça:</h3>
+        <ul>
+            <li>Não use IDs para estilização quando classes funcionam</li>
+            <li>Não repita IDs na mesma página</li>
+            <li>Não use espaços nos nomes: <code>minha classe</code> ❌</li>
+            <li>Não comece com números: <code>1classe</code> ❌</li>
+            <li>Não use caracteres especiais (exceto - e _)</li>
+            <li>Não abuse de especificidade com IDs</li>
+        </ul>
+    </div>
+
+    <h2>7. Convenções de Nomenclatura</h2>
+    
+    <div class="exemplo">
+        <h3>BEM (Block Element Modifier)</h3>
+        <div class="codigo">
+            <pre>&lt;div class="card"&gt;
+    &lt;h3 class="card__titulo"&gt;Título&lt;/h3&gt;
+    &lt;p class="card__texto"&gt;Texto&lt;/p&gt;
+    &lt;button class="card__botao card__botao--destaque"&gt;Clique&lt;/button&gt;
+&lt;/div&gt;</pre>
+        </div>
+
+        <h3>Utility Classes (Classes Utilitárias)</h3>
+        <div class="codigo">
+            <pre>&lt;div class="text-center bg-blue p-20 m-10"&gt;
+    Conteúdo
+&lt;/div&gt;</pre>
+        </div>
+    </div>
+
+    <h2>📝 Resumo Final</h2>
+    <div class="destaque">
+        <h3>DIV:</h3>
+        <ul>
+            <li>Container genérico para agrupar conteúdo</li>
+            <li>Elemento de bloco</li>
+            <li>Base para criar layouts</li>
+        </ul>
+
+        <h3>CLASSES:</h3>
+        <ul>
+            <li>Reutilizáveis em múltiplos elementos</li>
+            <li>Ideais para estilos CSS</li>
+            <li>Podem ser combinadas</li>
+            <li>Seletor: <code>.classe</code></li>
+        </ul>
+
+        <h3>IDs:</h3>
+        <ul>
+            <li>Únicos na página</li>
+            <li>Ideais para JavaScript e âncoras</li>
+            <li>Maior especificidade</li>
+            <li>Seletor: <code>#id</code></li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparação: Boas vs Más Práticas de UX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .comparison-page {
+            padding: var(--spacing-2xl) 0;
+            background: var(--bg-secondary);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .comparison-column {
+            background: var(--bg-primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison-column.bad {
+            border-top: 4px solid var(--error-color);
+        }
+
+        .comparison-column.good {
+            border-top: 4px solid var(--success-color);
+        }
+
+        .comparison-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .comparison-title.bad {
+            color: var(--error-color);
+        }
+
+        .comparison-title.good {
+            color: var(--success-color);
+        }
+
+        .example-box {
+            background: var(--bg-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .example-label {
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .reason {
+            background: rgba(0,0,0,0.05);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            margin-top: var(--spacing-md);
+            font-size: var(--font-size-sm);
+            font-style: italic;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .section-number {
+            font-size: var(--font-size-lg);
+            opacity: 0.8;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 800;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🛍️</span>
+                    <span class="logo-text">UX Shop</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                    <a href="exercicios/exercicios.html" class="nav-link">
+                        <span class="nav-icon">🧪</span>
+                        <span>Exercícios</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="comparison-page">
+        <div class="container">
+            <h1 class="section-title" style="text-align: center; margin-bottom: var(--spacing-2xl);">
+                ⚖️ Comparação Visual: Boas vs Más Práticas
+            </h1>
+
+            <!-- 1. CONTRASTE -->
+            <div class="section-header">
+                <div class="section-number">Tópico 1</div>
+                <h2 class="section-title">Contraste de Cores</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Texto com baixo contraste</div>
+                        <p style="color: #cccccc; background: #ffffff; padding: 1rem; border: 1px solid #e5e7eb;">
+                            Este texto é difícil de ler. O contraste é muito baixo (1.6:1). 
+                            Pessoas com baixa visão não conseguem ler.
+                        </p>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Contraste insuficiente torna o texto ilegível 
+                            para pessoas com baixa visão ou daltonismo. WCAG requer mínimo de 4.5:1.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Texto com bom contraste</div>
+                        <p style="color: #1f2937; background: #ffffff; padding: 1rem; border: 1px solid #e5e7eb;">
+                            Este texto é fácil de ler. O contraste é excelente (21:1). 
+                            Todas as pessoas conseguem ler confortavelmente.
+                        </p>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Contraste adequado garante legibilidade 
+                            para todos os usuários, incluindo pessoas com deficiências visuais.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. FORMULÁRIOS -->
+            <div class="section-header">
+                <div class="section-number">Tópico 2</div>
+                <h2 class="section-title">Labels em Formulários</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Apenas Placeholder</div>
+                        <input type="text" placeholder="Digite seu nome" style="width: 100%; padding: 8px; border: 2px solid #ccc; margin-bottom: 8px;">
+                        <input type="email" placeholder="Digite seu email" style="width: 100%; padding: 8px; border: 2px solid #ccc;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Quando você começa a digitar, 
+                            o placeholder desaparece e você perde o contexto do campo. 
+                            Leitores de tela também têm dificuldade.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Label + Placeholder</div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Nome Completo</label>
+                            <input type="text" placeholder="João Silva" style="width: 100%; padding: 8px; border: 2px solid #ccc;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Email</label>
+                            <input type="email" placeholder="joao@exemplo.com" style="width: 100%; padding: 8px; border: 2px solid #ccc;">
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Label sempre visível mantém o contexto. 
+                            Placeholder serve como exemplo. Acessível para todos!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. BOTÕES -->
+            <div class="section-header">
+                <div class="section-number">Tópico 3</div>
+                <h2 class="section-title">Tamanho de Botões</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Botão muito pequeno</div>
+                        <button style="padding: 2px 6px; font-size: 10px; border: 1px solid #ccc; background: white;">
+                            Clique aqui
+                        </button>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Botão muito pequeno (aproximadamente 15x20px) 
+                            é extremamente difícil de clicar, especialmente em dispositivos touch. 
+                            Causa frustração e erros.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Botão com tamanho adequado</div>
+                        <button class="btn btn-primary" style="min-height: 44px; padding: 12px 24px;">
+                            Clique aqui
+                        </button>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Botão com 44x44px (mínimo recomendado) 
+                            é fácil de clicar em qualquer dispositivo. Área de toque confortável 
+                            para dedos de todos os tamanhos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. FEEDBACK -->
+            <div class="section-header">
+                <div class="section-number">Tópico 4</div>
+                <h2 class="section-title">Feedback Visual</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Sem feedback</div>
+                        <button style="padding: 10px 20px; border: 1px solid #ccc; background: white; cursor: pointer;">
+                            Botão sem hover
+                        </button>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Sem mudança visual no hover, 
+                            o usuário não sabe se o elemento é clicável. Cria incerteza 
+                            e diminui a confiança.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Com feedback claro</div>
+                        <button class="btn btn-primary">
+                            Botão com hover
+                        </button>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Mudança visual no hover indica 
+                            interatividade. Usuário sabe que pode clicar. Cria confiança 
+                            e melhora a experiência.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. HIERARQUIA -->
+            <div class="section-header">
+                <div class="section-number">Tópico 5</div>
+                <h2 class="section-title">Hierarquia Visual</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Sem hierarquia</div>
+                        <div style="border: 1px solid #e5e7eb; padding: 1rem;">
+                            <p style="font-size: 14px; margin: 4px 0;">Smartphone XYZ</p>
+                            <p style="font-size: 14px; margin: 4px 0;">R$ 2.499,90</p>
+                            <p style="font-size: 14px; margin: 4px 0;">Celular de última geração</p>
+                            <button style="font-size: 14px; padding: 4px 8px;">Comprar</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Tudo tem o mesmo peso visual. 
+                            Usuário não sabe o que é mais importante. Dificulta escaneamento 
+                            rápido da informação.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Hierarquia clara</div>
+                        <div style="border: 1px solid #e5e7eb; padding: 1.5rem;">
+                            <h3 style="font-size: 20px; font-weight: 700; margin: 0 0 12px 0;">Smartphone XYZ</h3>
+                            <p style="font-size: 24px; font-weight: 700; color: #2563eb; margin: 0 0 12px 0;">R$ 2.499,90</p>
+                            <p style="font-size: 14px; color: #6b7280; margin: 0 0 16px 0;">Celular de última geração com câmera profissional</p>
+                            <button class="btn btn-primary">Comprar Agora</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Hierarquia clara: Título grande > 
+                            Preço destacado > Descrição secundária > Ação principal. 
+                            Guia o olhar do usuário naturalmente.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. MENSAGENS DE ERRO -->
+            <div class="section-header">
+                <div class="section-number">Tópico 6</div>
+                <h2 class="section-title">Mensagens de Erro</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Erro genérico</div>
+                        <input type="email" value="email-invalido" style="width: 100%; padding: 8px; border: 2px solid red;">
+                        <p style="color: red; font-size: 12px; margin-top: 4px;">Erro!</p>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> "Erro!" não explica o problema 
+                            nem como corrigir. Usuário fica perdido e frustrado.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    
+                    <div class="example-box">
+                        <div class="example-label">Erro específico</div>
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Email</label>
+                        <input type="email" value="email-invalido" style="width: 100%; padding: 8px; border: 2px solid #ef4444;">
+                        <p style="color: #ef4444; font-size: 12px; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                            <span>⚠</span>
+                            Email inválido. Use o formato: nome@exemplo.com
+                        </p>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Mensagem clara explica o problema 
+                            e dá exemplo de formato correto. Usuário sabe exatamente como corrigir.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESUMO FINAL -->
+            <div style="background: var(--primary-light); padding: var(--spacing-2xl); border-radius: var(--radius-lg); text-align: center; margin-top: var(--spacing-3xl);">
+                <h2 style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--spacing-md);">
+                    🎯 Princípios Fundamentais de UX
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">👁️</div>
+                        <strong>Visibilidade</strong>
+                        <p style="font-size: var(--font-size-sm); margin-top: var(--spacing-xs);">
+                            Usuário deve ver o que é importante
+                        </p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">💬</div>
+                        <strong>Feedback</strong>
+                        <p style="font-size: var(--font-size-sm); margin-top: var(--spacing-xs);">
+                            Sistema deve responder às ações
+                        </p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">♿</div>
+                        <strong>Acessibilidade</strong>
+                        <p style="font-size: var(--font-size-sm); margin-top: var(--spacing-xs);">
+                            Todos devem poder usar
+                        </p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">🎯</div>
+                        <strong>Clareza</strong>
+                        <p style="font-size: var(--font-size-sm); margin-top: var(--spacing-xs);">
+                            Comunicação direta e objetiva
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 7: Espaçamento entre Elementos -->
+            <div class="comparison-section">
+                <h2 class="section-title">7. Espaçamento (Whitespace)</h2>
+                <div class="section-description">
+                    Espaçamento adequado melhora legibilidade e reduz fadiga visual
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box" style="line-height: 1;">
+                        <div class="example-label">Elementos colados</div>
+                        <h4 style="margin: 0; font-size: 14px;">Título</h4>
+                        <p style="margin: 0; font-size: 11px;">Texto texto texto</p>
+                        <button style="margin: 0; padding: 2px 4px; font-size: 10px;">Ação</button>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Sem espaçamento, elementos se misturam. 
+                            Causa fadiga visual e dificulta a leitura e compreensão.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Espaçamento generoso</div>
+                        <h4 style="margin-bottom: 12px;">Título</h4>
+                        <p style="margin-bottom: 16px; line-height: 1.6;">Texto texto texto</p>
+                        <button class="btn btn-primary">Ação</button>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Espaçamento adequado cria hierarquia 
+                            visual e melhora respiração do conteúdo. Facilita leitura.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 8: Estados de Loading -->
+            <div class="comparison-section">
+                <h2 class="section-title">8. Estados de Carregamento</h2>
+                <div class="section-description">
+                    Feedback visual durante processamento reduz ansiedade
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sem feedback</div>
+                        <button disabled style="opacity: 0.6; padding: 12px 24px; border: none; background: #ccc; cursor: not-allowed;">
+                            Processar Pagamento
+                        </button>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Botão desabilitado sem explicação 
+                            causa confusão. Usuário não sabe se clicou ou se há erro.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Com loading visual</div>
+                        <button class="btn btn-primary" disabled>
+                            <span class="loading-spinner"></span>
+                            Processando...
+                        </button>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Loading spinner mostra que sistema 
+                            está trabalhando. Evita múltiplos cliques e reduz ansiedade.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 9: Menu Mobile -->
+            <div class="comparison-section">
+                <h2 class="section-title">9. Navegação Mobile</h2>
+                <div class="section-description">
+                    Adaptação adequada para telas pequenas
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Menu desktop em mobile</div>
+                        <div style="max-width: 180px; overflow: hidden; display: flex; gap: 2px; font-size: 8px;">
+                            <a href="#">Início</a>
+                            <a href="#">Produtos</a>
+                            <a href="#">Promoções</a>
+                            <a href="#">Contato</a>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Texto minúsculo e ilegível. 
+                            Áreas de toque muito pequenas causam cliques errados.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Menu hamburger</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px;">
+                            <strong>Logo</strong>
+                            <button style="font-size: 28px; background: none; border: none; cursor: pointer; padding: 8px;">☰</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Menu hamburger economiza espaço 
+                            e mantém áreas de toque de 44x44px (padrão Apple/Google).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 10: Campo de Busca -->
+            <div class="comparison-section">
+                <h2 class="section-title">10. Campo de Busca</h2>
+                <div class="section-description">
+                    Busca deve ser visível e reconhecível
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Busca escondida</div>
+                        <input type="text" style="width: 60px; font-size: 10px; padding: 4px;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Campo minúsculo dificulta digitação. 
+                            Sem ícone 🔍, usuário pode não reconhecer como busca.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Busca proeminente</div>
+                        <div style="position: relative; width: 100%;">
+                            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px;">🔍</span>
+                            <input type="search" placeholder="Buscar produtos..." 
+                                   style="width: 100%; padding: 12px 12px 12px 42px; border: 2px solid #ddd; border-radius: 8px; font-size: 14px;">
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Ícone reconhecível, placeholder 
+                            descritivo e tamanho adequado facilitam uso e descoberta.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 11: Cards de Produto -->
+            <div class="comparison-section">
+                <h2 class="section-title">11. Cards de Produtos</h2>
+                <div class="section-description">
+                    Hierarquia clara aumenta conversão
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Card desorganizado</div>
+                        <div style="border: 1px solid #ddd; padding: 8px;">
+                            <img src="https://via.placeholder.com/80x60" alt="Produto" style="width: 100%;">
+                            <small>Produto Notebook Dell 15"</small>
+                            <div style="color: red; font-size: 18px;">R$ 4.299,90</div>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Sem hierarquia, tudo tem mesma 
+                            importância. Preço em vermelho parece erro. Sem CTA.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Card estruturado</div>
+                        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; cursor: pointer;">
+                            <img src="https://via.placeholder.com/100x75" alt="Produto" style="width: 100%; border-radius: 4px; margin-bottom: 12px;">
+                            <h4 style="font-size: 14px; margin-bottom: 6px;">Notebook Dell</h4>
+                            <p style="font-size: 12px; color: #666; margin-bottom: 12px;">i7 • 16GB</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 18px; font-weight: 700; color: var(--primary-color);">R$ 4.299</span>
+                                <button class="btn btn-primary btn-small">Comprar</button>
+                            </div>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Hierarquia clara (título → descrição → preço → ação). 
+                            CTA óbvio e preço em destaque.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 12: Tooltips -->
+            <div class="comparison-section">
+                <h2 class="section-title">12. Tooltips Informativos</h2>
+                <div class="section-description">
+                    Ajuda contextual sem poluir interface
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sem explicação</div>
+                        <label>CVV</label>
+                        <input type="text" maxlength="3" style="width: 60px; padding: 8px;">
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Campo técnico sem explicação. 
+                            Muitos usuários não sabem o que é CVV.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Com tooltip</div>
+                        <label style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                            CVV 
+                            <span style="cursor: help; color: var(--primary-color); font-size: 16px;" title="Código de 3 dígitos no verso do cartão">ⓘ</span>
+                        </label>
+                        <input type="text" maxlength="3" placeholder="123" style="width: 80px; padding: 8px;">
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Ícone ⓘ oferece ajuda sem poluir. 
+                            Usuário acessa informação quando precisa.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 13: Breadcrumbs -->
+            <div class="comparison-section">
+                <h2 class="section-title">13. Navegação em Níveis</h2>
+                <div class="section-description">
+                    Breadcrumbs mostram localização na hierarquia
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sem contexto</div>
+                        <h2 style="margin: 0;">Notebook Dell</h2>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Usuário não sabe onde está 
+                            na estrutura do site. Dificulta navegação.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Com breadcrumbs</div>
+                        <nav style="font-size: 13px; margin-bottom: 16px; color: #666;">
+                            <a href="#" style="color: var(--primary-color);">Início</a> › 
+                            <a href="#" style="color: var(--primary-color);">Eletrônicos</a> › 
+                            <span style="color: #333; font-weight: 600;">Notebook Dell</span>
+                        </nav>
+                        <h2 style="margin: 0;">Notebook Dell</h2>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Mostra caminho completo. 
+                            Permite voltar facilmente. Melhora SEO.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 14: Paginação -->
+            <div class="comparison-section">
+                <h2 class="section-title">14. Paginação</h2>
+                <div class="section-description">
+                    Navegação clara entre páginas
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Paginação confusa</div>
+                        <div style="display: flex; gap: 2px; font-size: 11px;">
+                            <a href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
+                            <a href="#">5</a><a href="#">6</a><a href="#">7</a>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Números colados, áreas de clique 
+                            pequenas, sem indicar página atual.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Paginação clara</div>
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <button class="btn btn-secondary btn-small">← Anterior</button>
+                            <button style="padding: 8px 12px; border: 2px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: 4px; font-weight: 600;">1</button>
+                            <button style="padding: 8px 12px; border: 1px solid #ddd; background: white; border-radius: 4px;">2</button>
+                            <button style="padding: 8px 12px; border: 1px solid #ddd; background: white; border-radius: 4px;">3</button>
+                            <button class="btn btn-secondary btn-small">Próxima →</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Página atual destacada, botões 
+                            anterior/próximo, espaçamento adequado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 15: Modais -->
+            <div class="comparison-section">
+                <h2 class="section-title">15. Modais (Popups)</h2>
+                <div class="section-description">
+                    Interrupções devem ser respeitosas
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Modal agressivo</div>
+                        <div style="border: 3px solid red; padding: 12px; background: yellow;">
+                            <h3 style="color: red; margin: 0 0 6px 0; font-size: 14px;">INSCREVA-SE!!!</h3>
+                            <input type="email" style="width: 100%; margin-bottom: 6px;">
+                            <button style="background: red; color: white; width: 100%; padding: 8px; border: none;">INSCREVER</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Cores agressivas, caixa alta, 
+                            sem botão fechar. Desrespeita o usuário.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Modal respeitoso</div>
+                        <div style="border: 1px solid #ddd; padding: 20px; background: white; border-radius: 8px; position: relative;">
+                            <button style="position: absolute; top: 8px; right: 8px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666;">×</button>
+                            <h3 style="margin: 0 0 8px 0; font-size: 16px;">Receba ofertas</h3>
+                            <p style="margin: 0 0 12px 0; color: #666; font-size: 13px;">Fique por dentro</p>
+                            <input type="email" placeholder="seu@email.com" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;">
+                            <button class="btn btn-primary" style="width: 100%; padding: 10px;">Inscrever</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Botão fechar óbvio (×), 
+                            linguagem respeitosa, design limpo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 16: Empty States -->
+            <div class="comparison-section">
+                <h2 class="section-title">16. Estados Vazios</h2>
+                <div class="section-description">
+                    Transforme momentos vazios em oportunidades
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Vazio sem contexto</div>
+                        <p style="color: #999; margin: 20px 0;">Nenhum item encontrado</p>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Mensagem fria sem ajuda. 
+                            Não oferece próxima ação ao usuário.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Empty state útil</div>
+                        <div style="text-align: center; padding: 24px 12px;">
+                            <div style="font-size: 40px; margin-bottom: 12px;">🛒</div>
+                            <h4 style="margin-bottom: 6px; font-size: 16px;">Carrinho vazio</h4>
+                            <p style="color: #666; margin-bottom: 12px; font-size: 13px;">Adicione produtos!</p>
+                            <button class="btn btn-primary btn-small">Ver Produtos</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Ilustração, explicação clara 
+                            e ação sugerida. Mantém engajamento.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 17: Notificações -->
+            <div class="comparison-section">
+                <h2 class="section-title">17. Notificações e Alertas</h2>
+                <div class="section-description">
+                    Comunicação clara do status do sistema
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Notificação vaga</div>
+                        <div style="background: #f00; color: white; padding: 8px; font-size: 12px;">
+                            Erro no sistema
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Não explica o erro, não oferece 
+                            solução, cor muito agressiva assusta.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Notificação informativa</div>
+                        <div style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 12px; display: flex; gap: 10px; align-items: start;">
+                            <span style="font-size: 18px;">⚠️</span>
+                            <div style="flex: 1;">
+                                <strong style="display: block; margin-bottom: 4px; font-size: 13px;">Falha ao processar pagamento</strong>
+                                <p style="margin: 0; font-size: 12px; color: #666;">Verifique os dados do cartão e tente novamente</p>
+                            </div>
+                            <button style="background: none; border: none; font-size: 18px; cursor: pointer; color: #666;">×</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Explica problema, sugere solução, 
+                            ícone apropriado, pode ser fechada.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 18: Indicadores de Progresso -->
+            <div class="comparison-section">
+                <h2 class="section-title">18. Indicadores de Progresso</h2>
+                <div class="section-description">
+                    Mostre onde o usuário está no processo
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sem indicação</div>
+                        <form style="padding: 12px;">
+                            <input type="text" placeholder="Etapa 3 de 5" style="width: 100%; margin-bottom: 8px; padding: 8px;">
+                            <button class="btn btn-primary btn-small">Próximo</button>
+                        </form>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Usuário não vê progresso visual. 
+                            Não sabe quantas etapas faltam.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Com barra de progresso</div>
+                        <div style="padding: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px;">
+                                <span>Etapa 3 de 5</span>
+                                <span>60%</span>
+                            </div>
+                            <div style="height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; margin-bottom: 12px;">
+                                <div style="height: 100%; width: 60%; background: var(--primary-color);"></div>
+                            </div>
+                            <input type="text" placeholder="Dados de entrega" style="width: 100%; margin-bottom: 8px; padding: 8px;">
+                            <button class="btn btn-primary btn-small">Próximo</button>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Barra visual mostra progresso. 
+                            Usuário sabe quanto falta. Reduz abandono.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 19: Filtros -->
+            <div class="comparison-section">
+                <h2 class="section-title">19. Sistemas de Filtros</h2>
+                <div class="section-description">
+                    Filtros devem ser claros e fáceis de remover
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Filtros ocultos</div>
+                        <div style="display: flex; gap: 4px; font-size: 11px; margin-bottom: 8px;">
+                            <select style="font-size: 10px;"><option>Categoria</option></select>
+                            <select style="font-size: 10px;"><option>Preço</option></select>
+                        </div>
+                        <p style="font-size: 11px; color: #666;">12 produtos encontrados</p>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Não mostra filtros ativos. 
+                            Difícil remover. Usuário se perde.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Filtros visíveis</div>
+                        <div style="margin-bottom: 12px;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 8px;">Filtros ativos:</div>
+                            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                                <span style="background: var(--primary-light); padding: 4px 8px; border-radius: 12px; font-size: 12px; display: flex; align-items: center; gap: 4px;">
+                                    Eletrônicos <button style="background: none; border: none; cursor: pointer;">×</button>
+                                </span>
+                                <span style="background: var(--primary-light); padding: 4px 8px; border-radius: 12px; font-size: 12px; display: flex; align-items: center; gap: 4px;">
+                                    R$ 0-500 <button style="background: none; border: none; cursor: pointer;">×</button>
+                                </span>
+                            </div>
+                        </div>
+                        <p style="font-size: 13px;"><strong>12</strong> produtos encontrados</p>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Tags mostram filtros ativos. 
+                            Fácil remover (×). Resultado visível.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo 20: Confirmações de Ação -->
+            <div class="comparison-section">
+                <h2 class="section-title">20. Confirmações Destrutivas</h2>
+                <div class="section-description">
+                    Ações irreversíveis precisam de confirmação clara
+                </div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-column bad">
+                    <h3 class="comparison-title bad">❌ MÁ PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Sem confirmação</div>
+                        <button style="background: #f44336; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">
+                            Excluir Conta
+                        </button>
+                        <div class="reason">
+                            <strong>Por que é ruim:</strong> Ação destrutiva sem confirmação. 
+                            Clique acidental pode causar perda irreversível.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column good">
+                    <h3 class="comparison-title good">✅ BOA PRÁTICA</h3>
+                    <div class="example-box">
+                        <div class="example-label">Com modal de confirmação</div>
+                        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; background: #fff;">
+                            <h4 style="margin: 0 0 8px 0; font-size: 14px; color: #333;">⚠️ Excluir conta?</h4>
+                            <p style="margin: 0 0 12px 0; font-size: 12px; color: #666;">Esta ação não pode ser desfeita. Todos os dados serão perdidos.</p>
+                            <div style="display: flex; gap: 8px; justify-content: flex-end;">
+                                <button class="btn btn-secondary btn-small">Cancelar</button>
+                                <button style="background: #f44336; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">Excluir</button>
+                            </div>
+                        </div>
+                        <div class="reason">
+                            <strong>Por que é bom:</strong> Modal explica consequências. 
+                            Oferece cancelar. Previne erros graves.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: var(--spacing-3xl);">
+                <a href="exercicios/exercicios.html" class="btn btn-primary btn-large">
+                    Testar Conhecimentos nos Exercícios →
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 UX Shop - Projeto Educacional</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

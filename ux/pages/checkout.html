@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - UX Shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Estilos específicos para checkout */
+        
+        .checkout-page {
+            padding: var(--spacing-xl) 0;
+            background: var(--bg-secondary);
+        }
+
+        /* 
+        ✅ BOA PRÁTICA: Indicador de progresso do checkout
+        - Mostra etapas claramente
+        - Indica onde o usuário está
+        - Reduz ansiedade do processo
+        */
+        .checkout-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+            padding: var(--spacing-lg);
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+        }
+
+        .progress-step.active {
+            color: var(--primary-color);
+        }
+
+        .progress-step.completed {
+            color: var(--success-color);
+        }
+
+        .progress-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+        }
+
+        .progress-step.active .progress-number {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .progress-step.completed .progress-number {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .progress-separator {
+            width: 50px;
+            height: 2px;
+            background: var(--border-color);
+        }
+
+        /* Layout do checkout */
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-xl);
+        }
+
+        /* Formulário de checkout */
+        .checkout-form {
+            background: var(--bg-primary);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+        }
+
+        .checkout-section {
+            margin-bottom: var(--spacing-2xl);
+            padding-bottom: var(--spacing-2xl);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .checkout-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .checkout-section-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .section-icon {
+            font-size: var(--font-size-2xl);
+        }
+
+        /* Grid de campos */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .form-grid-full {
+            grid-column: 1 / -1;
+        }
+
+        /* 
+        ✅ BOA PRÁTICA: Opções de pagamento visuais
+        - Cards grandes e clicáveis
+        - Ícones reconhecíveis
+        - Estado selecionado claro
+        */
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .payment-option {
+            position: relative;
+        }
+
+        .payment-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .payment-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-lg);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-align: center;
+            min-height: 120px;
+            justify-content: center;
+        }
+
+        .payment-option input:checked + .payment-card {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .payment-option input:focus-visible + .payment-card {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .payment-card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+        }
+
+        .payment-label {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+        }
+
+        /* Resumo do pedido (sidebar) */
+        .order-summary {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .order-summary-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .order-items {
+            margin-bottom: var(--spacing-lg);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .order-item {
+            display: flex;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-image {
+            font-size: 2rem;
+        }
+
+        .order-item-info {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .order-item-quantity {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+        }
+
+        .order-item-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .order-totals {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .total-row.final {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            border-top: 2px solid var(--border-color);
+            padding-top: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+        }
+
+        .place-order-btn {
+            width: 100%;
+            margin-top: var(--spacing-lg);
+            font-size: var(--font-size-lg);
+        }
+
+        /* 
+        ✅ BOA PRÁTICA: Mensagens de segurança
+        */
+        .security-message {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+            margin-top: var(--spacing-md);
+        }
+
+        /* Campos de cartão de crédito */
+        .credit-card-fields {
+            display: none;
+            animation: slideDown 0.3s ease-in-out;
+        }
+
+        .credit-card-fields.show {
+            display: grid;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+                order: -1;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-step span:not(.progress-number) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo" aria-label="Página inicial">
+                    <span class="logo-icon">🛍️</span>
+                    <span class="logo-text">UX Shop</span>
+                </a>
+
+                <nav class="main-nav" aria-label="Navegação principal">
+                    <a href="carrinho.html" class="nav-link">
+                        <span class="nav-icon">⬅️</span>
+                        <span>Voltar ao Carrinho</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="checkout-page">
+        <div class="container">
+            <!-- 
+            ✅ BOA PRÁTICA: Indicador de progresso
+            -->
+            <div class="checkout-progress" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="3">
+                <div class="progress-step completed">
+                    <span class="progress-number">✓</span>
+                    <span>Carrinho</span>
+                </div>
+                <div class="progress-separator"></div>
+                <div class="progress-step active">
+                    <span class="progress-number">2</span>
+                    <span>Pagamento</span>
+                </div>
+                <div class="progress-separator"></div>
+                <div class="progress-step">
+                    <span class="progress-number">3</span>
+                    <span>Confirmação</span>
+                </div>
+            </div>
+
+            <div class="checkout-layout">
+                <!-- Formulário de checkout -->
+                <div class="checkout-form">
+                    <form id="checkout-form" novalidate>
+                        <!-- Dados de entrega -->
+                        <section class="checkout-section">
+                            <h2 class="checkout-section-title">
+                                <span class="section-icon">📦</span>
+                                Dados de Entrega
+                            </h2>
+
+                            <div class="form-grid">
+                                <div class="form-group form-grid-full">
+                                    <label for="cep" class="form-label">
+                                        CEP <span class="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="cep" 
+                                        name="cep" 
+                                        class="form-input"
+                                        required
+                                        maxlength="9"
+                                        placeholder="00000-000"
+                                    >
+                                </div>
+
+                                <div class="form-group form-grid-full">
+                                    <label for="endereco" class="form-label">
+                                        Endereço <span class="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="endereco" 
+                                        name="endereco" 
+                                        class="form-input"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="numero" class="form-label">
+                                        Número <span class="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="numero" 
+                                        name="numero" 
+                                        class="form-input"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="complemento" class="form-label">
+                                        Complemento
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="complemento" 
+                                        name="complemento" 
+                                        class="form-input"
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bairro" class="form-label">
+                                        Bairro <span class="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="bairro" 
+                                        name="bairro" 
+                                        class="form-input"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cidade" class="form-label">
+                                        Cidade <span class="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="cidade" 
+                                        name="cidade" 
+                                        class="form-input"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Método de pagamento -->
+                        <section class="checkout-section">
+                            <h2 class="checkout-section-title">
+                                <span class="section-icon">💳</span>
+                                Método de Pagamento
+                            </h2>
+
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input 
+                                        type="radio" 
+                                        name="payment-method" 
+                                        value="credit-card"
+                                        onchange="toggleCreditCardFields(true)"
+                                        checked
+                                        required
+                                    >
+                                    <div class="payment-card">
+                                        <span class="payment-icon">💳</span>
+                                        <span class="payment-label">Cartão de Crédito</span>
+                                    </div>
+                                </label>
+
+                                <label class="payment-option">
+                                    <input 
+                                        type="radio" 
+                                        name="payment-method" 
+                                        value="debit-card"
+                                        onchange="toggleCreditCardFields(true)"
+                                    >
+                                    <div class="payment-card">
+                                        <span class="payment-icon">💳</span>
+                                        <span class="payment-label">Cartão de Débito</span>
+                                    </div>
+                                </label>
+
+                                <label class="payment-option">
+                                    <input 
+                                        type="radio" 
+                                        name="payment-method" 
+                                        value="pix"
+                                        onchange="toggleCreditCardFields(false)"
+                                    >
+                                    <div class="payment-card">
+                                        <span class="payment-icon">📱</span>
+                                        <span class="payment-label">PIX</span>
+                                    </div>
+                                </label>
+
+                                <label class="payment-option">
+                                    <input 
+                                        type="radio" 
+                                        name="payment-method" 
+                                        value="boleto"
+                                        onchange="toggleCreditCardFields(false)"
+                                    >
+                                    <div class="payment-card">
+                                        <span class="payment-icon">📄</span>
+                                        <span class="payment-label">Boleto</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Campos de cartão de crédito -->
+                            <div class="credit-card-fields show" id="credit-card-fields">
+                                <div class="form-grid" style="margin-top: var(--spacing-lg);">
+                                    <div class="form-group form-grid-full">
+                                        <label for="card-number" class="form-label">
+                                            Número do Cartão <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="card-number" 
+                                            name="card-number" 
+                                            class="form-input"
+                                            placeholder="0000 0000 0000 0000"
+                                            maxlength="19"
+                                        >
+                                    </div>
+
+                                    <div class="form-group form-grid-full">
+                                        <label for="card-name" class="form-label">
+                                            Nome no Cartão <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="card-name" 
+                                            name="card-name" 
+                                            class="form-input"
+                                            placeholder="Como está no cartão"
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="card-expiry" class="form-label">
+                                            Validade <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="card-expiry" 
+                                            name="card-expiry" 
+                                            class="form-input"
+                                            placeholder="MM/AA"
+                                            maxlength="5"
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="card-cvv" class="form-label">
+                                            CVV <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="card-cvv" 
+                                            name="card-cvv" 
+                                            class="form-input"
+                                            placeholder="000"
+                                            maxlength="3"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+
+                <!-- Resumo do pedido -->
+                <aside class="order-summary">
+                    <h2 class="order-summary-title">Resumo do Pedido</h2>
+
+                    <div class="order-items" id="order-items">
+                        <!-- Itens serão renderizados aqui -->
+                    </div>
+
+                    <div class="order-totals" id="order-totals">
+                        <!-- Totais serão renderizados aqui -->
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        form="checkout-form"
+                        class="btn btn-primary place-order-btn"
+                    >
+                        Finalizar Pedido
+                    </button>
+
+                    <div class="security-message">
+                        <span>🔒</span>
+                        <span>Pagamento 100% seguro e protegido</span>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Redirecionar se carrinho vazio
+        if (appState.cart.length === 0) {
+            appState.showNotification('Carrinho vazio', 'warning');
+            setTimeout(() => {
+                window.location.href = 'produtos.html';
+            }, 1500);
+        }
+
+        // Renderizar resumo do pedido
+        function renderOrderSummary() {
+            const itemsContainer = document.getElementById('order-items');
+            const totalsContainer = document.getElementById('order-totals');
+
+            // Renderizar itens
+            const itemsHtml = appState.cart.map(item => {
+                const product = PRODUCTS.find(p => p.id === item.productId);
+                if (!product) return '';
+
+                return `
+                    <div class="order-item">
+                        <span class="order-item-image">${product.image}</span>
+                        <div class="order-item-info">
+                            <div class="order-item-name">${product.name}</div>
+                            <div class="order-item-quantity">Quantidade: ${item.quantity}</div>
+                        </div>
+                        <div class="order-item-price">
+                            ${formatCurrency(product.price * item.quantity)}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            itemsContainer.innerHTML = itemsHtml;
+
+            // Calcular totais
+            const subtotal = appState.getCartTotal();
+            const shipping = subtotal > 200 ? 0 : 15.90;
+            const total = subtotal + shipping;
+
+            totalsContainer.innerHTML = `
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span>${formatCurrency(subtotal)}</span>
+                </div>
+                <div class="total-row">
+                    <span>Frete</span>
+                    <span>${shipping === 0 ? 'Grátis' : formatCurrency(shipping)}</span>
+                </div>
+                <div class="total-row final">
+                    <span>Total</span>
+                    <span>${formatCurrency(total)}</span>
+                </div>
+            `;
+        }
+
+        // Toggle campos de cartão
+        function toggleCreditCardFields(show) {
+            const fields = document.getElementById('credit-card-fields');
+            if (show) {
+                fields.classList.add('show');
+            } else {
+                fields.classList.remove('show');
+            }
+        }
+
+        // Máscaras
+        document.getElementById('cep')?.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{5})(\d)/, '$1-$2');
+            e.target.value = value;
+        });
+
+        document.getElementById('card-number')?.addEventListener('input', (e) => {
+            e.target.value = maskCreditCard(e.target.value);
+        });
+
+        document.getElementById('card-expiry')?.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{2})(\d)/, '$1/$2');
+            e.target.value = value;
+        });
+
+        document.getElementById('card-cvv')?.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+
+        // Setup validação
+        setupFormValidation('checkout-form');
+
+        // Submit do formulário
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const form = e.target;
+            const submitBtn = document.querySelector('.place-order-btn');
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Processando...';
+
+            // Simular processamento
+            setTimeout(() => {
+                appState.clearCart();
+                appState.showNotification('Pedido realizado com sucesso! 🎉', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 1500);
+            }, 2000);
+        });
+
+        // Renderizar ao carregar
+        renderOrderSummary();
+    </script>
+</body>
+</html>
