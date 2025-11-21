@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Conversor de Metros — Ensino</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+
+    <h1>Site feito para o Lucas treinar conversão de unidades de medidas</h1>
+    <h2>Conversor de Metros — Guia Detalhado e Exercícios</h2>
+    <p>Aprenda a converter metros para outras unidades com explicações passo a passo.</p>
+
+    <!-- Controles globais de tema/contraste (fora do formulário) -->
+    <div class="global-controls" aria-hidden="false">
+        <div class="control">
+            <label for="themeToggle" class="toggle-label">Tema</label>
+            <label class="switch" title="Alternar tema claro/escuro">
+                <input id="themeToggle" type="checkbox" aria-label="Alternar Tema Claro/Escuro" />
+                <span class="slider">
+                    <span class="icon icon-sun" aria-hidden="true">☀️</span>
+                    <span class="icon icon-moon" aria-hidden="true">🌙</span>
+                </span>
+            </label>
+        </div>
+
+        <div class="control">
+            <label for="contrastToggle" class="toggle-label">Alto contraste</label>
+            <label class="switch" title="Ativar alto contraste">
+                <input id="contrastToggle" type="checkbox" aria-label="Ativar alto contraste" />
+                <span class="slider slider-contrast">
+                    <span class="label-on">ON</span>
+                    <span class="label-off">OFF</span>
+                </span>
+            </label>
+        </div>
+    </div>
+    
+    <nav class="navbar quick-links" aria-label="Navegação principal">
+        <div class="card small">
+            <strong>Ir para:</strong>
+            <a href="#materia">Explicação detalhada</a>
+            <span aria-hidden="true">·</span>
+            <a href="#exercicios">Exercícios</a>
+            <span aria-hidden="true">·</span>
+            <a href="#converter">Conversor</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section id="converter">
+        <h2>Conversor interativo</h2>
+        <div class="card">
+            <label for="meters">Valor em metros:</label>
+            <input id="meters" type="number" step="any" value="1" />
+
+            <label for="toUnit">Converter para:</label>
+            <label for="unitType">Tipo de conversão:</label>
+            <select id="unitType">
+                <option value="linear">Linear (m → unidades lineares)</option>
+                <option value="area">Área (m² → unidades de área)</option>
+                <option value="volume">Volume (m³ → unidades de volume)</option>
+            </select>
+
+            <label for="toUnit">Converter para:</label>
+            <select id="toUnit"></select>
+
+            <button id="convertBtn">Converter</button>
+
+            <div id="result" class="result"></div>
+            <details id="explanation" class="explain">
+                <summary>Ver explicação passo a passo</summary>
+                <div id="steps"></div>
+            </details>
+        </div>
+    </section>
+
+    <section id="exercicios">
+        <h2>Exercícios com opções</h2>
+        <div id="quiz" class="card">
+            <div id="questionArea"></div>
+            <form id="optionsForm"></form>
+            <div class="quiz-actions">
+                <button id="submitAnswer">Responder</button>
+                <button id="nextQuestion" hidden>Próxima</button>
+            </div>
+            <div id="feedback" class="feedback"></div>
+            <div class="quiz-extra-actions">
+                <button id="viewFullSteps" hidden>Ver passo a passo completo</button>
+                <button id="viewHistory">Ver histórico de erros</button>
+            </div>
+            <div id="score" class="score"></div>
+        </div>
+
+        <div class="card info">
+            <h3>Como usar</h3>
+            <p>Para cada exercício selecione a opção correta. Se errar, será exibida a justificativa completa com o cálculo passo a passo.</p>
+        </div>
+    </section>
+
+    <section id="lista-exercicios">
+        <h2>Lista de exercícios (por tipo)</h2>
+        <div class="card">
+            <div class="ex-list-grid">
+                <div>
+                    <h4>Linear</h4>
+                    <ul id="listLinear"></ul>
+                </div>
+                <div>
+                    <h4>Área</h4>
+                    <ul id="listArea"></ul>
+                </div>
+                <div>
+                    <h4>Volume</h4>
+                    <ul id="listVolume"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <section id="materia">
+        <h2>Explicação detalhada — Conversões de Unidades</h2>
+        <div class="card">
+            <article>
+                <p>Este material explica os princípios básicos para converter medidas lineares, de área e de volume, com exemplos passo a passo e dicas para evitar erros comuns.</p>
+
+                <h3>Conceitos principais</h3>
+                <ul>
+                    <li><strong>Linear (comprimento)</strong>: base em metros (m). Exemplos: quilômetro (km), hectômetro (hm), decímetro (dm), centímetro (cm), milímetro (mm). Para converter, multiplique ou divida pelo fator de mudança de casas.</li>
+                    <li><strong>Área</strong>: unidades são potências de 2 (m²). A relação usa o quadrado dos fatores lineares. Ex.: 1 m² = 10000 cm² (porque 1 m = 100 cm → 100² = 10000).</li>
+                    <li><strong>Volume</strong>: unidades são potências de 3 (m³). Ex.: 1 m³ = 1000000 cm³ (porque 1 m = 100 cm → 100³ = 1.000.000). Lembre-se que litros (L) são uma unidade prática de volume: 1 m³ = 1000 L.</li>
+                </ul>
+
+                <h3>Exemplos passo a passo</h3>
+
+                <h4>1) Conversão linear — 150 m para hectômetros (hm)</h4>
+                <ol>
+                    <li>Identifique a relação: 1 hm = 100 m, então 1 m = 0,01 hm.</li>
+                    <li>Multiplique: 150 × 0,01 = 1,5 → 150 m = 1,5 hm.</li>
+                </ol>
+
+                <div class="image-row" style="margin-top:12px;">
+                    <figure class="highlight-box">
+                        <div class="icon">📐</div>
+                        <figcaption>
+                            <img src="img/conversaounidadesdecomprimento.webp" alt="Tabela de unidades de comprimento" style="max-width:100%; display:block; margin-bottom:8px; border-radius:8px;" />
+                            <div style="font-weight:700; margin-bottom:6px">Tabela: Unidades de comprimento</div>
+                            <div style="color:var(--muted); font-size:0.95rem">Referência visual com unidades e ordem de grandeza — útil para lembrar deslocamentos de casas.</div>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="highlight-box">
+                        <div class="icon">📏</div>
+                        <figcaption>
+                            <img src="img/conversaomedidasdecomprimento-cke.webp" alt="Ilustração medidas de comprimento" style="max-width:100%; display:block; margin-bottom:8px; border-radius:8px;" />
+                            <div style="font-weight:700; margin-bottom:6px">Ilustração: Medidas de comprimento</div>
+                            <div style="color:var(--muted); font-size:0.95rem">Exemplo visual de segmentos com diferentes unidades — ajuda a internalizar a escala relativa entre unidades.</div>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <h4>2) Conversão de área — 2,5 m² para cm²</h4>
+                <ol>
+                    <li>Identifique o fator linear: 1 m = 100 cm.</li>
+                    <li>Eleve ao quadrado: (100)² = 10000 → 1 m² = 10000 cm².</li>
+                    <li>Multiplique: 2,5 × 10000 = 25000 → 2,5 m² = 25000 cm².</li>
+                </ol>
+
+                <h4>3) Conversão de volume — 0,75 m³ para litros (L)</h4>
+                <ol>
+                    <li>Lembre que 1 m³ = 1000 L.</li>
+                    <li>Multiplique: 0,75 × 1000 = 750 → 0,75 m³ = 750 L.</li>
+                </ol>
+
+                
+
+                <h3>Dicas e armadilhas comuns</h3>
+                <ul>
+                    <li>Para área, sempre aplique o quadrado ao fator linear; para volume, aplique o cubo.</li>
+                    <li>Cuidado com casas decimais e separadores (use ponto ou vírgula conforme o contexto). Nosso site formata resultados em português (vírgula como separador decimal na exibição).</li>
+                    <li>Quando a unidade final aparece com expoente (ex.: cm², m³), verifique se usou o fator elevado corretamente.</li>
+                    <li>Se a resposta parece 10×, 100× ou 1000× diferente, é provavelmente um deslocamento de casas (esquecimento de elevar ao quadrado/cubo ou usar fator inverso).</li>
+                </ul>
+
+                <h3>Recapitulação rápida</h3>
+                <p>Transformações lineares: aplicar diretamente o fator (m → km: dividir por 1000). Para áreas: fator². Para volumes: fator³. Use sempre um passo organizado: identificar fator → transformar fator (se for área/volume) → multiplicar/dividir → verificar unidade final.</p>
+            </article>
+        </div>
+    </section>
+
+<footer>
+    <small>Feito para estudar conversões de unidades métricas.</small>
+</footer>
+
+<!-- Modal para passo a passo completo e histórico -->
+<div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content card">
+        <button id="modalClose" class="modal-close" title="Fechar">×</button>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
